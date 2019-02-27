@@ -6,6 +6,7 @@
       fixed
       app
     >
+      <!--共用导航-->
       <Navigation></Navigation>
     </v-navigation-drawer>
     <v-toolbar
@@ -23,6 +24,7 @@
         <span class="hidden-sm-and-down">NHT</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <span class="hidden-sm-and-down">admin欢迎你！</span>
       <v-btn icon>
         <v-icon>notifications</v-icon>
       </v-btn>
