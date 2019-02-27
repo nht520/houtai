@@ -1,15 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 const Layout = () => import( '@/components/Layout.vue');
+const Home = () => import( '@/components/Home/Home.vue');
 const Login = () => import( '@/components/Login.vue');
 const List = () => import( '@/components/List/List.vue');
 const Details = () => import( '@/components/Details/Details.vue');
+
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
-      path: '/Login',
+      path: '/',
       name: 'Login',
       component: Login,
       meta: {
@@ -17,11 +20,16 @@ export default new Router({
       }
     },
     {
-      path: '/',
+      path: '/Layout',
       name: 'Layout',
       component: Layout,
-      redirect:'/List',
+      redirect:'/Home',
       children:[
+        {
+          path:'/Home',
+          name:'Home',
+          component:Home,
+        },
         {
           path: '/List',
           name: 'List',

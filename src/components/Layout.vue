@@ -21,12 +21,12 @@
         <v-btn icon @click.stop="drawer = !drawer">
           <v-icon>apps</v-icon>
         </v-btn>
-        <span class="hidden-sm-and-down">NHT</span>
+        <span class="hidden-sm">NHT</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <span class="hidden-sm-and-down">admin欢迎你！</span>
       <v-btn icon>
-        <v-icon>notifications</v-icon>
+        <v-icon @click="remover">notifications</v-icon>
       </v-btn>
     </v-toolbar>
     <v-content>
@@ -42,12 +42,42 @@
 
 <script>
   import Navigation from "./Navigation";
+  import storage from "../storage/storage";
   export default {
     components: {
       Navigation
     },
     data: () => ({
-      drawer: false,
+      drawer: true,
     }),
+    methods:{
+      remover(){
+        storage.remove("user");
+        this.$router.push({path:'/'});
+      }
+
+    },
+    mounted(){
+      //判断用户是否登录
+      this.user = storage.get("user");
+      if (this.user === ""){
+        this.$router.push({path:'/'})
+      } else {
+        this.$router.push({path:'/Layout'})
+      }
+    }
   }
 </script>
+<style lang="stylus" rel="stylesheet/stylus">
+  .v-toolbar
+    box-shadow 0 2px 4px -1px rgba(199, 203, 255, 0.2), 0 4px 5px 0 rgba(221, 228, 255, 0.14), 0 1px 10px 0 rgba(206, 207, 255, 0.12)
+  .blue.darken-3
+    background-color #ffffff!important
+    border-color #ffffff!important
+  .v-btn .v-btn__content .v-icon
+   color  #409EFF
+  .hidden-sm-and-down
+   color #303133
+  .hidden-sm
+   color #409EFF
+</style>
