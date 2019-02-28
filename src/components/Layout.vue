@@ -32,7 +32,7 @@
     <v-content>
       <!--内容部分-->
       <v-container fluid fill-height>
-        <v-layout justify-center align-center>
+        <v-layout>
           <router-view></router-view>
         </v-layout>
       </v-container>
@@ -80,4 +80,10 @@
    color #303133
   .hidden-sm
    color #409EFF
+  .v-content
+   background #f5f1fc
+  .theme--light.v-navigation-drawer:not(.v-navigation-drawer--floating) .v-navigation-drawer__border
+    background-color: rgba(254, 254, 254, 0.12)
+    box-shadow 0 2px 4px -1px rgba(199,203,255,0.2), 0 4px 5px 0 rgba(221,228,255,0.14), 0 1px 10px 0 rgba(206,207,255,0.12);
+    -webkit-box-shadow 0 2px 4px -1px rgba(199,203,255,0.2), 0 4px 5px 0 rgba(221,228,255,0.14), 0 1px 10px 0 rgba(206,207,255,0.12);
 </style>

@@ -17,20 +17,24 @@
                 <span>首页</span>
               </template>
               <el-menu-item-group>
-                <router-link  v-for="(item,key) in nvaigtion"   :to="item.path" :key="item.id"   tag="li" >
+                <router-link
+                  v-for="(item,key) in nvaigtion"
+                  :to="item.path"
+                  :key="item.id"
+                  tag="li" >
                   <el-menu-item index="1-1" @click="change(key)">
                     <span>{{item.title}}</span>
-                    <v-icon>{{item.icon}}</v-icon>
+                    <!--<i class="el-icon-location"></i>-->
                   </el-menu-item>
                 </router-link>
               </el-menu-item-group>
 
               <el-submenu index="1-4">
-                  <template slot="title">选项4</template>
-                  <router-link  v-for="(item,key) in nvaigti" :to="item.path" :key="item.id"  tag="li">
+
+                  <template slot="title"><i class="el-icon-location"></i>选项4</template>
+                  <router-link  v-for="(item,key) in nvaigti" :to="item.path"  :key="item.id"  tag="li">
                     <el-menu-item index="1-1">
                       <span>{{item.title}}</span>
-                      <v-icon>{{item.icon}}</v-icon>
                     </el-menu-item>
                   </router-link>
                 </el-submenu>
@@ -45,7 +49,6 @@
       </el-row>
   </div>
 </template>
-
 <script>
     export default {
         name: "Navigation",
@@ -55,20 +58,17 @@
               {
                 id:0,
                 path:'/Home',
-                title:"首页1",
-                icon:"fa fa-heart",
+                title:"HOME",
               },
               {
                 id:1,
                 path:'/List',
                 title:"商品",
-                icon:"fa fa-heart",
               },
               {
                 id:2,
                 path:'/Details',
                 title:"详情",
-                icon:"fa fa-bomb",
               },
             ],
             nvaigti:[
@@ -76,19 +76,16 @@
                 id:0,
                 path:'/Home',
                 title:"首页1",
-                icon:"fa fa-heart",
               },
               {
                 id:1,
                 path:'/List',
                 title:"商品",
-                icon:"fa fa-heart",
               },
               {
                 id:2,
                 path:'/Details',
                 title:"详情",
-                icon:"fa fa-bomb",
               },
             ],
           }
@@ -111,4 +108,8 @@
 <style lang="stylus" rel="stylesheet/stylus">
   .el-menu
    border none
+  .el-menu-item.is-active
+   color #303133
+  .router-link-active
+   background #ecf5ff
 </style>
