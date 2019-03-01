@@ -1,28 +1,24 @@
 <template>
     <div id="Home">
-      <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>{{title}}</el-breadcrumb-item>
-      </el-breadcrumb>
-      <!--table-->
-      <div>
-        <h1>111111111</h1>
-      </div>
+        <h1>我是首页</h1>
     </div>
 </template>
 
 <script>
   export default {
         name: "Home",
-        data(){
+    components: {
+
+    },
+    data(){
           return{
-            title:""
           }
         },
         methods:{
 
         },
         mounted(){
+
         }
     }
 </script>

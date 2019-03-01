@@ -48,6 +48,7 @@
       Navigation
     },
     data: () => ({
+      hedtitle:"",
       drawer: true,
     }),
     methods:{

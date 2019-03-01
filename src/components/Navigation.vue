@@ -4,102 +4,109 @@
         <!--<span>{{item.title}}</span>-->
         <!--<v-icon>{{item.icon}}</v-icon>-->
     <!--</router-link>-->
-      <el-row class="tac">
-        <el-col :span="24">
-          <el-menu
-            default-active="2"
-            class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose">
-            <el-submenu index="1">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>首页</span>
-              </template>
-              <el-menu-item-group>
-                <router-link
-                  v-for="(item,key) in nvaigtion"
-                  :to="item.path"
-                  :key="item.id"
-                  tag="li" >
-                  <el-menu-item index="1-1" @click="change(key)">
-                    <span>{{item.title}}</span>
-                    <!--<i class="el-icon-location"></i>-->
-                  </el-menu-item>
-                </router-link>
-              </el-menu-item-group>
+    <el-col :span="24">
+      <el-menu
+        default-active="1"
+        class="el-menu-vertical-demo">
+        <router-link to="/Home" tag="li">
+          <el-menu-item index="1">
+            <i class="el-icon-setting"></i>
+            <span slot="title">首页</span>
+          </el-menu-item>
+        </router-link>
+      </el-menu>
+    </el-col>
 
-              <el-submenu index="1-4">
+    <el-col :span="24">
+      <el-menu
+        default-active="2"
+        class="el-menu-vertical-demo"
+        v-for="(item,id) in admins" :key="id"
+       >
+          <el-submenu index="1" >
+            <template slot="title">
+              <i :class="item.class"></i>
+              <span>{{item.title}}</span>
+            </template>
 
-                  <template slot="title"><i class="el-icon-location"></i>选项4</template>
-                  <router-link  v-for="(item,key) in nvaigti" :to="item.path"  :key="item.id"  tag="li">
-                    <el-menu-item index="1-1">
-                      <span>{{item.title}}</span>
-                    </el-menu-item>
-                  </router-link>
-                </el-submenu>
-              </el-submenu>
+            <el-menu-item-group
+              v-for="(one,id) in item.list"
+              :key="id"
+            >
+              <router-link :to="one.path" tag="li">
+                <el-menu-item index="1-1"  @click="init(one)">
+                     <i :class="one.class"></i>
+                     {{one.title}}
+                </el-menu-item>
+              </router-link>
 
-              <el-menu-item index="2">
-                <i class="el-icon-menu"></i>
-                <span slot="title">导航二</span>
-              </el-menu-item>
-          </el-menu>
-        </el-col>
-      </el-row>
+            </el-menu-item-group>
+
+          </el-submenu>
+      </el-menu>
+    </el-col>
   </div>
 </template>
 <script>
     export default {
-        name: "Navigation",
+        // name: "Navigation",
         data(){
           return{
-            nvaigtion:[
+            admins: [
               {
-                id:0,
-                path:'/Home',
-                title:"HOME",
+                id:"1",
+                title:"首页",
+                icon:"home",
+                class:"el-icon-news",
+                list:[
+                  {
+                    id:"1",
+                    title:"列表",
+                    path:"/List",
+                    class:"el-icon-menu",
+                  },
+                  {
+                    id:"2",
+                    title:"详情",
+                    path:"/Details",
+                    icon:"home",
+                    class:"el-icon-tickets",
+                  }
+                ]
               },
               {
-                id:1,
-                path:'/List',
-                title:"商品",
+                id:"2",
+                title:"提示",
+                icon:"home",
+                class:"el-icon-location",
+                list:[
+                  {
+                    id:"1",
+                    title:"头部",
+                    path:"/header",
+                    icon:"home",
+                    class:"el-icon-location",
+                  },
+                  {
+                    id:"2",
+                    title:"提示",
+                    path:"/hint",
+                    icon:"home",
+                    class:"el-icon-location",
+                  }
+                ]
               },
-              {
-                id:2,
-                path:'/Details',
-                title:"详情",
-              },
-            ],
-            nvaigti:[
-              {
-                id:0,
-                path:'/Home',
-                title:"首页1",
-              },
-              {
-                id:1,
-                path:'/List',
-                title:"商品",
-              },
-              {
-                id:2,
-                path:'/Details',
-                title:"详情",
-              },
+
             ],
           }
         },
         methods: {
-          handleOpen(key, keyPath) {
-            console.log(key, keyPath);
-          },
-          handleClose(key, keyPath) {
-            console.log(key, keyPath);
-          },
-          change(key){
-            console.log(key)
+          init(one){
+            console.log(one);
+            this.$store.commit('navlist',one);
           }
+        },
+        mounted(){
 
         }
     }
@@ -112,4 +119,7 @@
    color #303133
   .router-link-active
    background #ecf5ff
+  .router-link-exact-active
+     & .el-menu-item
+       color #409eff
 </style>
