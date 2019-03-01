@@ -2,16 +2,24 @@
     <div id="List">
       <Header></Header>
       <!---->
-      <el-table
-        :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
-        style="width: 100%">
+      <el-table style="width: 100%" :data="tableData">
+
         <el-table-column
-          label="Date"
-          prop="date">
+          label="时间"
+          prop="date"
+        >
         </el-table-column>
         <el-table-column
-          label="Name"
+          label="姓名"
           prop="name">
+        </el-table-column>
+        <el-table-column
+          prop="iphone"
+          label="电话">
+        </el-table-column>
+        <el-table-column
+          prop="address"
+          label="地址">
         </el-table-column>
         <el-table-column
           align="right">
@@ -45,30 +53,31 @@
             tableData: [{
               date: '2016-05-02',
               name: '王小虎',
+              iphone:'15803614645',
               address: '上海市普陀区金沙江路 1518 弄'
             }, {
               date: '2016-05-04',
               name: '王小虎',
+              iphone:'15803614645',
               address: '上海市普陀区金沙江路 1517 弄'
             }, {
               date: '2016-05-01',
-              name: '王小虎',
+              name: '王小',
+              iphone:'15803614645',
               address: '上海市普陀区金沙江路 1519 弄'
             }, {
               date: '2016-05-03',
               name: '王小虎',
+              iphone:'15803614645',
               address: '上海市普陀区金沙江路 1516 弄'
             }],
             search: ''
           }
         },
        methods:{
-         handleEdit(index, row) {
-           console.log(index, row);
-         },
-         handleDelete(index, row) {
-           console.log(index, row);
-         }
+       },
+       mounted(){
+
        }
     }
 </script>

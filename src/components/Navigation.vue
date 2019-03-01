@@ -102,12 +102,11 @@
         },
         methods: {
           init(one){
-            console.log(one);
+            // console.log(one);
             this.$store.commit('navlist',one);
           }
         },
         mounted(){
-
         }
     }
 </script>

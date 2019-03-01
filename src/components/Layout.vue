@@ -59,6 +59,7 @@
 
     },
     mounted(){
+
       //判断用户是否登录
       this.user = storage.get("user");
       if (this.user === ""){
@@ -66,6 +67,7 @@
       } else {
         this.$router.push({path:'/Layout'})
       }
+
     }
   }
 </script>
