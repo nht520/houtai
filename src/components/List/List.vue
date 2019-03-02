@@ -40,14 +40,17 @@
           </template>
         </el-table-column>
       </el-table>
+      <!--引用分业组件-->
+      <Navpages></Navpages>
     </div>
 </template>
 
 <script>
     import Header from "../Header/Header";
+    import Navpages from "../Navpges/Navpages";
     export default {
         name: "List",
-        components: {Header},
+        components: {Navpages, Header},
         data(){
           return{
             tableData: [{
@@ -75,6 +78,7 @@
           }
         },
        methods:{
+
        },
        mounted(){
 

@@ -33,7 +33,11 @@
       <!--内容部分-->
       <v-container fluid fill-height>
         <v-layout>
-          <router-view></router-view>
+          <transition name="bounce"  mode="out-in">
+            <keep-alive>
+              <router-view></router-view>
+            </keep-alive>
+          </transition>
         </v-layout>
       </v-container>
     </v-content>
@@ -60,18 +64,19 @@
     },
     mounted(){
 
-      //判断用户是否登录
-      this.user = storage.get("user");
-      if (this.user === ""){
-        this.$router.push({path:'/'})
-      } else {
-        this.$router.push({path:'/Layout'})
-      }
 
-    }
+    },
+
   }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
+  .bounce-enter-active //切换动画效果
+    transition all .4s ease
+  .bounce-leave-active
+    transition all .6s cubic-bezier(1.0, 0.5, 0.8, 1.0)
+  .bounce-enter, .bounce-leave-to
+    transform translateX(10px)
+    opacity 0
   .v-toolbar
     box-shadow 0 2px 4px -1px rgba(199, 203, 255, 0.2), 0 4px 5px 0 rgba(221, 228, 255, 0.14), 0 1px 10px 0 rgba(206, 207, 255, 0.12)
   .blue.darken-3

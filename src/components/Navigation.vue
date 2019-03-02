@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <!--<router-link  v-for="item in nvaigtion" :to="item.path" :key="item.id"  tag="li">-->
-        <!--<span>{{item.title}}</span>-->
-        <!--<v-icon>{{item.icon}}</v-icon>-->
-    <!--</router-link>-->
+  <div id="Navigation">
     <el-col :span="24">
       <el-menu
         default-active="1"
@@ -39,7 +35,6 @@
                      {{one.title}}
                 </el-menu-item>
               </router-link>
-
             </el-menu-item-group>
 
           </el-submenu>
@@ -48,6 +43,7 @@
   </div>
 </template>
 <script>
+   import storage from "../storage/storage"
     export default {
         // name: "Navigation",
         data(){
@@ -57,13 +53,13 @@
                 id:"1",
                 title:"首页",
                 icon:"home",
-                class:"el-icon-news",
+                class:"el-icon-menu",
                 list:[
                   {
                     id:"1",
                     title:"列表",
                     path:"/List",
-                    class:"el-icon-menu",
+                    class:"el-icon-news",
                   },
                   {
                     id:"2",
@@ -104,13 +100,14 @@
           init(one){
             // console.log(one);
             this.$store.commit('navlist',one);
+            storage.set("navlist",one);
           }
         },
         mounted(){
+
         }
     }
 </script>
-
 <style lang="stylus" rel="stylesheet/stylus">
   .el-menu
    border none
@@ -120,5 +117,7 @@
    background #ecf5ff
   .router-link-exact-active
      & .el-menu-item
-       color #409eff
+        color #409eff
+       & i
+          color #409eff !important
 </style>

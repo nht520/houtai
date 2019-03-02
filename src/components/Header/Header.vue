@@ -11,6 +11,7 @@
   </div>
 </template>
 <script>
+    import storage from "../../storage/storage"
     export default {
         name: "Header",
         data(){
@@ -24,7 +25,15 @@
             }
         },
         mounted(){
-          this.title=this.$store.state.title.title;
+          // this.title=this.$store.state.title.title;
+          //判断是否有
+          this.hadnav = storage.get("navlist");
+          this.title=this.hadnav.title;
+          // if (this.title=""){
+          //   this.title=this.title;
+          // }
+
+
         }
     }
 </script>

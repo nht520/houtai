@@ -5,11 +5,11 @@ const Home = () => import( '@/components/Home/Home.vue');
 const Login = () => import( '@/components/Login.vue');
 const List = () => import( '@/components/List/List.vue');
 const Details = () => import( '@/components/Details/Details.vue');
-
+const For = () => import('@/components/NotFound/For.vue');
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     {
       path: '/',
@@ -39,8 +39,13 @@ export default new Router({
           path:'/Details',
           name:'Details',
           component:Details,
-        }
+        },
       ]
     },
-  ]
+    {
+      path: '*',
+      name: 'For',
+      component: For,
+    },
+  ],
 })
