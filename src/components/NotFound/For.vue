@@ -81,15 +81,12 @@
     font-family: 'Anton', sans-serif;
     font-family: 'Combo', cursive;
   }
-
-
   .con {
     width: 500px;
     height: 500px;
     position: relative;
     margin: 9% auto 0;
     animation: ani9 0.7s ease-in-out infinite  alternate ;}
-
   @keyframes ani9 {
     0%{
       transform: translateY(10px);

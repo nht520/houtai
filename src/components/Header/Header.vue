@@ -42,4 +42,8 @@
   .el-breadcrumb__inner:hover
    color #409eff
    cursor pointer
+  #Header
+    background-color #ffffff
+    padding 1% 1%
+    border-bottom 1px solid #ebeef5
 </style>

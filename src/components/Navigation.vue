@@ -36,10 +36,10 @@
                 </el-menu-item>
               </router-link>
             </el-menu-item-group>
-
           </el-submenu>
       </el-menu>
     </el-col>
+
   </div>
 </template>
 <script>
@@ -98,10 +98,11 @@
         },
         methods: {
           init(one){
-            // console.log(one);
+            console.log(one);
             this.$store.commit('navlist',one);
             storage.set("navlist",one);
           }
+
         },
         mounted(){
 
