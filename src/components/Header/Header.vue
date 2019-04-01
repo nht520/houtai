@@ -2,7 +2,7 @@
   <div id="Header">
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item >
-        <span @click="gohome()">首页</span>
+        <span @click="gohome()">{{header}}</span>
       </el-breadcrumb-item>
         <el-breadcrumb-item>
             {{title}}
@@ -13,10 +13,12 @@
 <script>
     import storage from "../../storage/storage"
     export default {
-        name: "Header",
-        data(){
+      name: "Header",
+      props: ['header'], // 直接简写方式，不指定类型
+      data(){
           return{
             title:"",
+            text:"",
           }
         },
         methods:{
@@ -29,11 +31,6 @@
           //判断是否有
           this.hadnav = storage.get("navlist");
           this.title=this.hadnav.title;
-          // if (this.title=""){
-          //   this.title=this.title;
-          // }
-
-
         }
     }
 </script>

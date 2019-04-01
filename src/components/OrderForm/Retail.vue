@@ -1,31 +1,29 @@
 <template>
-  <div id="Dtetails">
-    <Header></Header>
-    <h1>我是详情</h1>
+  <div id="Retail">
+    <Header :header="title"></Header>
   </div>
 </template>
 
 <script>
   import Header from "../Header/Header";
   export default {
-    name: "Details",
+    name: "Distribution",
     components: {Header},
     data(){
       return{
-        title:""
+        title:"订单管理"
       }
     },
-    mounted(){
-      // this.title=this.$store.state.title.title;
-      // this.title = this.$route.path.replace("/","");
-    },
     methods:{
+
+    },
+    mounted() {
 
     }
   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  #Dtetails
+  #Retail
    width 100%
 </style>

@@ -24,15 +24,14 @@
               <i :class="item.class"></i>
               <span>{{item.title}}</span>
             </template>
-
             <el-menu-item-group
-              v-for="(one,id) in item.list"
+              v-for="(v,id) in item.list"
               :key="id"
             >
-              <router-link :to="one.path" tag="li">
-                <el-menu-item index="1-1"  @click="init(one)">
-                     <i :class="one.class"></i>
-                     {{one.title}}
+              <router-link :to="v.path" tag="li">
+                <el-menu-item index="1-1"  @click="init(v)">
+                     <i :class="v.class"></i>
+                     {{v.title}}
                 </el-menu-item>
               </router-link>
             </el-menu-item-group>
@@ -51,21 +50,26 @@
             admins: [
               {
                 id:"1",
-                title:"首页",
+                title:"订单管理",
                 icon:"home",
                 class:"el-icon-menu",
                 list:[
                   {
                     id:"1",
-                    title:"列表",
-                    path:"/List",
+                    title:"分销订单",
+                    path:"/Distribution",
                     class:"el-icon-news",
                   },
                   {
                     id:"2",
-                    title:"详情",
-                    path:"/Details",
-                    icon:"home",
+                    title:"零售订单",
+                    path:"/Retail",
+                    class:"el-icon-tickets",
+                  },
+                  {
+                    id:"2",
+                    title:"套餐订单",
+                    path:"/Mine",
                     class:"el-icon-tickets",
                   }
                 ]
@@ -92,17 +96,15 @@
                   }
                 ]
               },
-
             ],
           }
         },
         methods: {
-          init(one){
-            console.log(one);
-            this.$store.commit('navlist',one);
-            storage.set("navlist",one);
-          }
-
+          init(v){
+            // this.$store.commit('navlist',v);
+            storage.set("navlist",v);
+            console.log(v);
+          },
         },
         mounted(){
 

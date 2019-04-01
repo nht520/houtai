@@ -1,24 +1,15 @@
 <template>
     <div id="List">
-      <Header></Header>
-      <!---->
-      <el-table style="width: 100%" :data="tableData">
+      <el-table
+        :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+        style="width: 100%">
         <el-table-column
-          label="时间"
-          prop="date"
-        >
+          label="Date"
+          prop="date">
         </el-table-column>
         <el-table-column
-          label="姓名"
+          label="Name"
           prop="name">
-        </el-table-column>
-        <el-table-column
-          prop="iphone"
-          label="电话">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="地址">
         </el-table-column>
         <el-table-column
           align="right">
@@ -39,8 +30,6 @@
           </template>
         </el-table-column>
       </el-table>
-      <!--引用分业组件-->
-      <Navpages></Navpages>
     </div>
 </template>
 
@@ -49,33 +38,64 @@
     import Navpages from "../Navpges/Navpages";
     export default {
         name: "List",
-        components: {Navpages, Header},
+        components: {
+
+        },
+        props: {
+          tableData:{
+            // type:String,
+            // default:[],
+          },
+        },
         data(){
           return{
-            tableData: [{
-              date: '2016-05-02',
-              name: '王小虎1',
-              iphone:'15803614645',
-              address: '上海市普陀区金沙江路 1518 弄'
-            },
-              {
-              date: '2016-05-04',
-              name: '王小虎',
-              iphone:'15803614645',
-              address: '上海市普陀区金沙江路 1517 弄'
-            },
-              {
-              date: '2016-05-01',
-              name: '王小',
-              iphone:'15803614645',
-              address: '上海市普陀区金沙江路 1519 弄'
-            },
-              {
-              date: '2016-05-03',
-              name: '王小虎',
-              iphone:'15803614645',
-              address: '上海市普陀区金沙江路 1516 弄'
-            }],
+            // list:[
+            //   {
+            //     id:1,
+            //     label:"编号",
+            //     prop:"name"
+            //   },
+            //   {
+            //     id:2,
+            //     label:"电话",
+            //     prop:"iphone"
+            //   },
+            //   {
+            //     id:3,
+            //     label:"地址",
+            //     prop:"address"
+            //   },
+            //   {
+            //     id:4,
+            //     label:"时间",
+            //     prop:"data"
+            //   },
+            //
+            // ],
+            // tableData: [{
+            //   date: '2016-05-02',
+            //   name: '王小虎1',
+            //   iphone:'15803614645',
+            //   address: '上海市普陀区金沙江路 1518 弄'
+            // },
+            //   {
+            //   date: '2016-05-04',
+            //   name: '王小虎',
+            //   iphone:'15803614645',
+            //   address: '上海市普陀区金沙江路 1517 弄'
+            // },
+            //   {
+            //   date: '2016-05-01',
+            //   name: '王小',
+            //   iphone:'15803614645',
+            //   address: '上海市普陀区金沙江路 1519 弄'
+            // },
+            //   {
+            //   date: '2016-05-03',
+            //   name: '王小虎',
+            //   iphone:'15803614645',
+            //   address: '上海市普陀区金沙江路 1516 弄'
+            // }],
             search: ''
           }
         },

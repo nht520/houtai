@@ -5,8 +5,8 @@
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
           :current-page="currentPage4"
-          :page-sizes="[100, 200, 300, 400]"
-          :page-size="100"
+          :page-sizes="[10, 20, 30, 40]"
+          :page-size="10"
           layout="total, sizes, prev, pager, next, jumper"
           :total="400">
         </el-pagination>
@@ -19,9 +19,9 @@
         name: "Navpages",
         data(){
           return{
-            currentPage1: 5,
-            currentPage2: 5,
-            currentPage3: 5,
+            currentPage1: 1,
+            currentPage2: 2,
+            currentPage3: 3,
             currentPage4: 4
           }
         },
@@ -42,6 +42,7 @@
 <style lang="stylus" rel="stylesheet/stylus">
     #Navpages
       text-align right
-      margin-top 2%
+      padding 1% 1% 1% 0%
+      background #FFFFFF
 
 </style>
