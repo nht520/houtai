@@ -6,7 +6,15 @@
       <!--引用表格-->
         <el-table
           :data="list"
-          style="width: 100%">
+          ref="multipleTable"
+          tooltip-effect="dark"
+          style="width: 100%"
+          @selection-change="selectionRowsChange"
+        >
+          <el-table-column
+            type="selection"
+            width="55">
+          </el-table-column>
           <el-table-column
             label="日期">
             <template slot-scope="scope">
@@ -34,14 +42,14 @@
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button
-                size="small"
+                size="mini"
                 @click="compile">编辑</el-button>
               <el-button
-                size="small"
+                size="mini"
                 type="danger"
                 @click="deLeate">删除</el-button>
               <el-button
-                size="small"
+                size="mini"
                 type="success"
                 @click="examine">查看</el-button>
             </template>
@@ -49,17 +57,23 @@
         </el-table>
         <!-- 引用分业-->
         <div id="Navpages">
-          <div class="block">
-            <el-pagination
-              @size-change="handleSizeChange"
-              @current-change="handleCurrentChange"
-              :current-page="currentPage4"
-              :page-sizes="[10, 20, 30, 40]"
-              :page-size="10"
-              layout="total, sizes, prev, pager, next, jumper"
-              :total="400">
-            </el-pagination>
-          </div>
+          <el-row>
+            <el-col :span="12" class="left">
+                  <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
+                  <el-button type="danger" size="mini" @click="chkDelet" >删除</el-button>
+              </el-col>
+              <el-col :span="12">
+                  <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage4"
+                    :page-sizes="[10, 20, 30, 40]"
+                    :page-size="10"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="400">
+                  </el-pagination>
+              </el-col>
+          </el-row>
         </div>
       </div>
     </div>
@@ -118,6 +132,22 @@
            this.$router.push({path:'/Details'});
            console.log(this.title)
          },
+         toggleSelect(rows) {
+           console.log(rows);
+           if (rows) {
+             rows.forEach(row => {
+               this.$refs.multipleTable.toggleRowSelection(row);
+             });
+           } else {
+             this.$refs.multipleTable.clearSelection();
+           }
+         },
+         selectionRowsChange(val){
+           console.log(val);
+         },
+         chkDelet(index, rows) { //删除
+
+         },
          handleSizeChange(val) {
            console.log(`每页 ${val} 条`);
          },
@@ -133,6 +163,9 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  .left
+   text-align left
+   padding-left  1%
   #Distri
    width 100%
   #Navpages
