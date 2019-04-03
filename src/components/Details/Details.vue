@@ -1,18 +1,26 @@
 <template>
   <div id="Dtetails">
-    <Header></Header>
-    <h1>我是详情</h1>
+    <HeaderOne :header="title"></HeaderOne>
+<!--  详情-->
+    <el-row>
+      <el-col :span="24">
+        <div class="grid-content bg-purple-dark">
+          <h1>我是详情</h1>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
   import Header from "../Header/Header";
+  import HeaderOne from "../Header/HeaderOne";
   export default {
     name: "Details",
-    components: {Header},
+    components: {HeaderOne, Header},
     data(){
       return{
-        title:""
+        title:"详情"
       }
     },
     mounted(){

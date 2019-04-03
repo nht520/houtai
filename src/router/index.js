@@ -3,7 +3,6 @@ import Router from 'vue-router'
 const Layout = () => import( '@/components/Layout.vue');
 const Home = () => import( '@/components/Home/Home.vue');
 const Login = () => import( '@/components/Login.vue');
-const List = () => import( '@/components/List/List.vue');
 const Details = () => import( '@/components/Details/Details.vue');
 const For = () => import('@/components/NotFound/For.vue');
 
@@ -50,11 +49,6 @@ export default new Router({
           path:'/Retail',
           name:'Retail',
           component:Retail
-        },
-        {
-          path: '/List',
-          name: 'List',
-          component: List
         },
         {
           path:'/Details',
