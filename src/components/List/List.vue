@@ -1,32 +1,40 @@
 <template>
     <div id="List">
       <el-table
-        :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+        :data="tableData"
         style="width: 100%">
         <el-table-column
-          label="Date"
-          prop="date">
-        </el-table-column>
-        <el-table-column
-          label="Name"
-          prop="name">
-        </el-table-column>
-        <el-table-column
-          align="right">
-          <template slot="header" slot-scope="scope">
-            <el-input
-              v-model="search"
-              size="mini"
-              placeholder="输入关键字搜索"/>
+          label="日期"
+        >
+          <template slot-scope="scope">
+            <i class="el-icon-time"></i>
+            <span style="margin-left: 10px">{{ scope.row.date }}</span>
           </template>
+        </el-table-column>
+        <el-table-column
+          prop="name"
+          label="姓名"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="name"
+          label="年龄"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="iphone"
+          label="电话"
+        >
+        </el-table-column>
+        <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button
               size="mini"
-              @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+              @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
             <el-button
               size="mini"
               type="danger"
-              @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+              @click="handleDelete(scope.$index, scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -96,7 +104,6 @@
             //   iphone:'15803614645',
             //   address: '上海市普陀区金沙江路 1516 弄'
             // }],
-            search: ''
           }
         },
        methods:{
