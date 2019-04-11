@@ -16,15 +16,15 @@
             width="55">
           </el-table-column>
           <el-table-column
-            label="日期">
+            label="姓名">
             <template slot-scope="scope">
               <i class="el-icon-time"></i>
-              <span style="margin-left: 10px">{{ scope.row.date }}</span>
+              <span style="margin-left: 10px">{{ scope.row.memberName }}</span>
             </template>
           </el-table-column>
           <el-table-column
-            prop="name"
-            label="姓名">
+            prop="memberGender"
+            label="年龄">
           </el-table-column>
           <el-table-column
             prop="age"
@@ -47,7 +47,7 @@
               <el-button
                 size="mini"
                 type="danger"
-                @click="deLeate">删除</el-button>
+                @click.native.prevent="deleteRow(scope.$index, list)">删除</el-button>
               <el-button
                 size="mini"
                 type="success"
@@ -58,19 +58,20 @@
         <!-- 引用分业-->
         <div id="Navpages">
           <el-row>
-            <el-col :span="12" class="left">
+              <el-col :span="12" class="left">
                   <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
-                  <el-button type="danger" size="mini" @click="chkDelet" >删除</el-button>
+                  <el-button type="danger" size="mini" >删除</el-button>
               </el-col>
+              <!-- 分业-->
               <el-col :span="12">
                   <el-pagination
                     @size-change="handleSizeChange"
                     @current-change="handleCurrentChange"
-                    :current-page="currentPage4"
-                    :page-sizes="[10, 20, 30, 40]"
-                    :page-size="10"
+                    :current-page="current"
+                    :page-sizes="[10, 20]"
+                    :page-size=size
                     layout="total, sizes, prev, pager, next, jumper"
-                    :total="400">
+                    :total=total>
                   </el-pagination>
               </el-col>
           </el-row>
@@ -80,53 +81,24 @@
 </template>
 <script>
     import Header from "../Header/Header";
+    import Axios from "axios";
     export default {
       name: "Distribution",
       components: {Header},
       data(){
           return{
             title:"订单管理",
-            currentPage1: 1,
-            currentPage2: 2,
-            currentPage3: 3,
-            currentPage4: 4,
-            list: [
-              {
-                date: '2016-05-02',
-                name: '王小虎1',
-                iphone:'15803614645',
-                age:"15",
-                address: '上海市普陀区金沙江路 1518 弄'
-              },
-              {
-                date: '2016-05-04',
-                name: '王小虎',
-                iphone:'15803614645',
-                age:"15",
-                address: '上海市普陀区金沙江路 1517 弄'
-              },
-              {
-                date: '2016-05-01',
-                name: '王小',
-                iphone:'15803614645',
-                age:"15",
-                address: '上海市普陀区金沙江路 1519 弄'
-              },
-              {
-                date: '2016-05-03',
-                name: '王小虎',
-                iphone:'15803614645',
-                age:"15",
-                address: '上海市普陀区金沙江路 1516 弄'
-              }],
+            current: 1,
+            list: [],
+            total:0,
+            size:0,
+            present:1,
+            number:"10",
           }
         },
        methods:{
          compile (){
            console.log("编辑")
-         },
-         deLeate(){
-           console.log("删除")
          },
          examine(){
            this.$router.push({path:'/Details'});
@@ -145,19 +117,35 @@
          selectionRowsChange(val){
            console.log(val);
          },
-         chkDelet(index, rows) { //删除
-
+         deleteRow(index, rows) {
+           rows.splice(index, 1);
          },
          handleSizeChange(val) {
            console.log(`每页 ${val} 条`);
+          this.number=val;
+           this.distList();
          },
          handleCurrentChange(val) {
            console.log(`当前页: ${val}`);
+           this.present=val;
+           this.distList();
          },
-
+         distList(){
+           const api = "https://api.9knx.com/api/member?current="+this.present+"&size="+this.number;
+           Axios.get(api).then((res)=>{
+             console.log(res);
+             this.list=res.data.records;
+             this.total=res.data.total;
+             this.size=res.data.size;
+             this.pages=res.data.pages;
+             this.current=res.data.current;
+           },(err)=>{
+             console.log(err)
+           })
+         }
        },
        mounted() {
-
+          this.distList();
        }
     }
 </script>
