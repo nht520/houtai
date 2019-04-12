@@ -27,16 +27,12 @@
             label="年龄">
           </el-table-column>
           <el-table-column
-            prop="age"
-            label="年龄">
-          </el-table-column>
-          <el-table-column
-            prop="iphone"
+            prop="memberPhone"
             label="电话"
           >
           </el-table-column>
           <el-table-column
-            prop="address"
+            prop="memberAge"
             label="地址">
           </el-table-column>
           <el-table-column label="操作">
@@ -60,7 +56,7 @@
           <el-row>
               <el-col :span="12" class="left">
                   <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
-                  <el-button type="danger" size="mini" >删除</el-button>
+                  <el-button type="danger" size="mini" @click="qxDete" >删除</el-button>
               </el-col>
               <!-- 分业-->
               <el-col :span="12">
@@ -97,13 +93,16 @@
           }
         },
        methods:{
+         //编辑
          compile (){
            console.log("编辑")
          },
+         //查看详情
          examine(){
            this.$router.push({path:'/Details'});
            console.log(this.title)
          },
+         //全选
          toggleSelect(rows) {
            console.log(rows);
            if (rows) {
@@ -114,11 +113,17 @@
              this.$refs.multipleTable.clearSelection();
            }
          },
+         //获取全选的key
          selectionRowsChange(val){
            console.log(val);
          },
+         //删除当前一行
          deleteRow(index, rows) {
            rows.splice(index, 1);
+         },
+         //删除选中数据
+         qxDete(){
+            console.log("删除选中数据");
          },
          handleSizeChange(val) {
            console.log(`每页 ${val} 条`);
