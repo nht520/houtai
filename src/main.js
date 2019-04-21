@@ -18,6 +18,9 @@ Vue.use(VeeValidate);
 import Vuex from 'vuex';
 import store from "./store/store";
 Vue.use(Vuex) ;
+//引用charts
+import VCharts from 'v-charts';
+Vue.use(VCharts);
 //引用strage,configreact
 import storage from "./storage/storage";
 import config from "../static/config"

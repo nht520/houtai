@@ -10,6 +10,8 @@ const For = () => import('@/components/NotFound/For.vue');
 const Distribution = () => import("@/components/OrderForm/Distribution.vue");
 const Mine = () => import("@/components/OrderForm/Mine.vue");
 const Retail = () => import("@/components/OrderForm/Retail.vue");
+//用户
+const UserList = () => import("@/components/UserName/UserList.vue");
 
 Vue.use(Router);
 
@@ -44,6 +46,11 @@ export default new Router({
           path:'/Mine',
           name:'Mine',
           component:Mine
+        },
+        {
+          path:"/UserList",
+          name:"UserList",
+          component:UserList
         },
         {
           path:'/Retail',

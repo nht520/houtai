@@ -6,7 +6,7 @@
         class="el-menu-vertical-demo">
         <router-link to="/Home" tag="li">
           <el-menu-item index="1">
-            <i class="el-icon-setting"></i>
+            <v-icon>layers</v-icon>
             <span slot="title">首页</span>
           </el-menu-item>
         </router-link>
@@ -30,7 +30,7 @@
             >
               <router-link :to="v.path" tag="li">
                 <el-menu-item index="1-1"  @click="init(v)">
-                     <i :class="v.class"></i>
+                     <v-icon >{{v.icon}}</v-icon>
                      {{v.title}}
                 </el-menu-item>
               </router-link>
@@ -51,24 +51,28 @@
               {
                 id:"1",
                 title:"订单管理",
-                icon:"fas fa-angry",
+                icon:"loyalty",
+                class:"loyalty",
                 list:[
                   {
                     id:"1",
                     title:"分销订单",
                     path:"/Distribution",
-                    class:"el-icon-news",
+                    icon:"people",
+                    class:"loyalty",
                   },
                   {
                     id:"2",
                     title:"零售订单",
                     path:"/Retail",
+                    icon:"library_books",
                     class:"el-icon-tickets",
                   },
                   {
                     id:"2",
                     title:"套餐订单",
                     path:"/Mine",
+                    icon:"sd_card",
                     class:"el-icon-tickets",
                   }
                 ]
@@ -76,12 +80,14 @@
               {
                 id:"2",
                 title:"用户管理",
+                icon:"person_pin",
                 class:"fa-user-ninja",
                 list:[
                   {
                     id:"1",
                     title:"用户列表",
-                    path:"/header",
+                    path:"/UserList",
+                    icon:"bubble_chart",
                     class:"fa-user-ninja",
                   },
                   {
