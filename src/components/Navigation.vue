@@ -21,7 +21,7 @@
        >
           <el-submenu index="1" >
             <template slot="title">
-              <i :class="item.class"></i>
+              <v-icon>{{item.icon}}</v-icon>
               <span>{{item.title}}</span>
             </template>
             <el-menu-item-group
@@ -51,8 +51,7 @@
               {
                 id:"1",
                 title:"订单管理",
-                icon:"home",
-                class:"el-icon-menu",
+                icon:"fas fa-angry",
                 list:[
                   {
                     id:"1",
@@ -76,22 +75,19 @@
               },
               {
                 id:"2",
-                title:"提示",
-                icon:"home",
-                class:"el-icon-location",
+                title:"用户管理",
+                class:"fa-user-ninja",
                 list:[
                   {
                     id:"1",
-                    title:"头部",
+                    title:"用户列表",
                     path:"/header",
-                    icon:"home",
-                    class:"el-icon-location",
+                    class:"fa-user-ninja",
                   },
                   {
                     id:"2",
                     title:"提示",
                     path:"/hint",
-                    icon:"home",
                     class:"el-icon-location",
                   }
                 ]
