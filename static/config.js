@@ -29,5 +29,7 @@ window.g = {
   addressadd:besurl+"/distributor/address",
 //  修改地址
   adsupdate:besurl+"/distributor/address/update",
-  //
+  //查询所有会员
+  hopMember:besurl+"/distributor/shopMember"
+
 };

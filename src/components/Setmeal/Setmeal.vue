@@ -1,5 +1,5 @@
 <template>
-  <div id="UserList">
+  <div id="Setmeal">
     <Header :header="title"></Header>
     <!--  头部-->
     <div class="list">
@@ -20,24 +20,29 @@
           label="编号">
         </el-table-column>
         <el-table-column
-          label="姓名"
-          prop="realname"
+          prop="mealName"
+          label="套餐名"
         >
         </el-table-column>
         <el-table-column
-          prop="mobile"
-          label="电话"
-        >
+          prop="mealPrice"
+          label="价格">
         </el-table-column>
         <el-table-column
-          prop="province"
-          label="地址">
+          prop="mealNum"
+          label="数量">
         </el-table-column>
         <el-table-column label="操作">
+          <template slot="header" slot-scope="scope">
+            <el-button
+              size="mini"
+              type="primary"
+              @click="compile">添加</el-button>
+          </template>
           <template slot-scope="scope">
-<!--            <el-button-->
-<!--              size="mini"-->
-<!--              @click="compile">编辑</el-button>-->
+            <el-button
+              size="mini"
+              @click="compile">编辑</el-button>
             <el-button
               size="mini"
               type="danger"
@@ -77,7 +82,7 @@
   import Header from "../Header/Header";
   import Axios from "axios";
   export default {
-    name: "UserList",
+    name: "Setmeal",
     components: {Header},
     data(){
       return{
@@ -134,7 +139,7 @@
         this.distList();
       },
       distList(){
-        const api = window.g.hopMember;
+        const api = window.g.meal;
         // const api = "https://api.9knx.com/api/member?current="+this.present+"&size="+this.number;
         Axios.get(api).then((res)=>{
           this.list=res.data.records;
@@ -158,7 +163,7 @@
   .left
     text-align left
     padding-left  1%
-  #UserList
+  #Setmeal
     width 100%
   #Navpages
     text-align right

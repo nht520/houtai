@@ -12,6 +12,9 @@ const Mine = () => import("@/components/OrderForm/Mine.vue");
 const Retail = () => import("@/components/OrderForm/Retail.vue");
 //用户
 const UserList = () => import("@/components/UserName/UserList.vue");
+//商城套餐
+const Setmeal = () => import("@/components/Setmeal/Setmeal.vue");
+
 
 Vue.use(Router);
 
@@ -36,6 +39,11 @@ export default new Router({
           path:'/Home',
           name:'Home',
           component:Home
+        },
+        {
+          path:"/Setmeal",
+          name:"Setmeal",
+          component:Setmeal
         },
         {
           path:'/Distribution',

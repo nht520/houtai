@@ -50,6 +50,21 @@
             admins: [
               {
                 id:"1",
+                title:"商品管理",
+                icon:"loyalty",
+                class:"loyalty",
+                list:[
+                  {
+                    id:"1",
+                    title:"分销套组",
+                    path:"/Setmeal",
+                    icon:"people",
+                    class:"loyalty",
+                  },
+                ]
+              },
+              {
+                id:"1",
                 title:"订单管理",
                 icon:"loyalty",
                 class:"loyalty",
@@ -60,13 +75,6 @@
                     path:"/Distribution",
                     icon:"people",
                     class:"loyalty",
-                  },
-                  {
-                    id:"2",
-                    title:"零售订单",
-                    path:"/Retail",
-                    icon:"library_books",
-                    class:"el-icon-tickets",
                   },
                   {
                     id:"2",

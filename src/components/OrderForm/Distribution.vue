@@ -136,7 +136,7 @@
            this.distList();
          },
          distList(){
-           const api = window.g.distributon;
+           const api = window.g.subordinate;
            // const api = "https://api.9knx.com/api/member?current="+this.present+"&size="+this.number;
            let param = {
              params:{

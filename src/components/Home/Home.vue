@@ -6,6 +6,11 @@
         </el-col>
       </el-row>
       <h1>{{title}}</h1>
+      <ve-bmap
+        :settings="chartSettings"
+        :series="chartSeries"
+        :tooltip="chartTooltip">
+      </ve-bmap>
     </div>
 </template>
 
@@ -17,6 +22,17 @@
 
       },
       data(){
+          this.chartSettings = {
+            key: 'oBvDtR6nzWtVchkY4cLHtnah1VVZQKRK',
+            bmap: {
+              center: [120, 30],
+              zoom: 14,
+              roam: true,
+              mapStyle: {},
+              // llmap:"",
+            }
+          };
+          this.chartTooltip = { show: true };
           return{
             title:"我是首页",
             chartData: {
@@ -29,8 +45,17 @@
                 { '日期': '1/5', '访问用户': 3792, '下单用户': 3492, '下单率': 0.323 },
                 { '日期': '1/6', '访问用户': 4593, '下单用户': 4293, '下单率': 0.78 }
               ]
-            }
-            }
+            },
+            chartSeries: [
+              {
+                type: 'scatter',
+                coordinateSystem: 'bmap',
+                data: [
+                  [120, 30, 1] // 经度，维度，value，...
+                ]
+              }
+            ]
+          }
       },
       methods:{
         //判断用户是否登录
@@ -44,7 +69,7 @@
         },
       },
       mounted(){
-        this.userLoding()
+        this.userLoding();
       }
   }
 </script>

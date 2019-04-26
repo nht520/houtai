@@ -47,7 +47,7 @@
         password:"",
         nameRules: [
           v => !!v || '用户名不能为空',
-          v => v.length <= 10 || '用户名不能大于6个字符'
+          v => v.length <= 12 || '用户名不能大于6个字符'
         ],
         passwordRules: [
           v => !!v || '密码不能为空',
@@ -67,14 +67,14 @@
         } else {
           //把用户名  密码统一存在_param里面  把_param提交到后台
           const _param = new URLSearchParams();
-                _param.append("empName",_this.username);
-                _param.append("empPassword",_this.password);
-          let Api = window.g.ParentPage.LoginApi;
+                _param.append("memberPhone",_this.username);
+                _param.append("memberPassword",_this.password);
+          let Api = window.g.login;
           Axios.post(Api,_param).then((res)=>{
             console.log(res);
             if (res.status === 200){
-                const code = res.data.status;
-                if ( code === "1"){
+                const code = res.data.code;
+                if ( code === "200"){
                   _this.$store.commit('login',res.data.data);
                   // this.$store.dispatch('toggleFollowPerson',{userId:this.user.userid})
                   //将数据存在storage
