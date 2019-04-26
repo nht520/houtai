@@ -37,7 +37,7 @@
             <el-button
               size="mini"
               type="primary"
-              @click="compile">添加</el-button>
+              @click="compile">添加套组</el-button>
           </template>
           <template slot-scope="scope">
             <el-button

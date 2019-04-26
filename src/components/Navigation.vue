@@ -51,14 +51,14 @@
               {
                 id:"1",
                 title:"商品管理",
-                icon:"loyalty",
+                icon:"how_to_vote",
                 class:"loyalty",
                 list:[
                   {
                     id:"1",
                     title:"分销套组",
                     path:"/Setmeal",
-                    icon:"people",
+                    icon:"group_add",
                     class:"loyalty",
                   },
                 ]
