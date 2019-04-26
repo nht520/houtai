@@ -24,9 +24,9 @@
         <span class="hidden-sm">NHT</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <span class="hidden-sm-and-down">admin欢迎你！</span>
+      <span class="hidden-sm-and-down">{{memberName}} 欢迎你！</span>
       <v-btn icon>
-        <v-icon @click="remover">notifications</v-icon>
+        <v-icon @click="remover">eject</v-icon>
       </v-btn>
     </v-toolbar>
     <v-content>
@@ -54,6 +54,7 @@
     data: () => ({
       hedtitle:"",
       drawer: true,
+      memberName:""
     }),
     methods:{
       remover(){
@@ -63,8 +64,7 @@
 
     },
     mounted(){
-
-
+     this.memberName = storage.get("user").memberName;
     },
   }
 </script>

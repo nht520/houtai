@@ -98,12 +98,6 @@
                     icon:"bubble_chart",
                     class:"fa-user-ninja",
                   },
-                  {
-                    id:"2",
-                    title:"提示",
-                    path:"/hint",
-                    class:"el-icon-location",
-                  }
                 ]
               },
             ],
