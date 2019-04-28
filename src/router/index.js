@@ -14,7 +14,9 @@ const Retail = () => import("@/components/OrderForm/Retail.vue");
 const UserList = () => import("@/components/UserName/UserList.vue");
 //商城套餐
 const Setmeal = () => import("@/components/Setmeal/Setmeal.vue");
-
+//
+const Site = () => import("@/components/Site/Site.vue");
+const Address = () => import("@/components/Site/Address.vue");
 
 Vue.use(Router);
 
@@ -69,6 +71,16 @@ export default new Router({
           path:'/Details',
           name:'Details',
           component:Details
+        },
+        {
+          path:'/Site',
+          name:'Site',
+          component:Site
+        },
+        {
+          path:'/Address',
+          name:'Address',
+          component:Address
         },
       ]
     },

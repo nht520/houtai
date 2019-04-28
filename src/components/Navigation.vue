@@ -100,6 +100,23 @@
                   },
                 ]
               },
+              {
+                id:"2",
+                title:"地址管理",
+                icon:"person_pin",
+                class:"fa-user-ninja",
+                list:[
+                  {
+                    id:"1",
+                    title:"地址列表",
+                    path:"/Site",
+                    icon:"bubble_chart",
+                    class:"fa-user-ninja",
+                  },
+                ]
+              },
+
+
             ],
           }
         },
