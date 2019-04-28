@@ -27,6 +27,9 @@ window.g = {
   getCounty:besurl+"/distributor/systemAddress/getCounty",
   //添加地址
   addressadd:besurl+"/distributor/address",
+//  查询地址邮费
+  findCost:besurl+"/distributor/addressCost",
+
 //  修改地址
   adsupdate:besurl+"/distributor/address/update",
   //查询所有会员

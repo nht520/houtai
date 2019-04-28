@@ -113,6 +113,13 @@
                     icon:"bubble_chart",
                     class:"fa-user-ninja",
                   },
+                  {
+                    id:"2",
+                    title:"邮费管理",
+                    path:"/Postage",
+                    icon:"motorcycle",
+                    class:"fa-user-ninja",
+                  },
                 ]
               },
 

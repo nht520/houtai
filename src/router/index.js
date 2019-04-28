@@ -14,10 +14,10 @@ const Retail = () => import("@/components/OrderForm/Retail.vue");
 const UserList = () => import("@/components/UserName/UserList.vue");
 //商城套餐
 const Setmeal = () => import("@/components/Setmeal/Setmeal.vue");
-//
+//地址邮费
 const Site = () => import("@/components/Site/Site.vue");
 const Address = () => import("@/components/Site/Address.vue");
-
+const Postage =() => import("@/components/Site/Postage.vue");
 Vue.use(Router);
 
 export default new Router({
@@ -81,6 +81,11 @@ export default new Router({
           path:'/Address',
           name:'Address',
           component:Address
+        },
+        {
+          path:'/Postage',
+          name:'Postage',
+          component:Postage
         },
       ]
     },
