@@ -18,6 +18,8 @@ window.g = {
   //自己发货订单
   indent:besurl+"/distributor/order",
   update:besurl+"/distributor/order/update",
+  //分销订单
+  subordinate:besurl+"/distributor/subordinate",
   //地址
   // 省
   getProvince:besurl+"/distributor/systemAddress/getProvince",
