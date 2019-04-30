@@ -47,15 +47,16 @@
           <template slot-scope="scope">
             <el-button
               size="mini"
-              @click="compile">编辑</el-button>
+              @click="compile(scope.$index, scope.row)"
+            >编辑</el-button>
             <el-button
               size="mini"
               type="danger"
-              @click.native.prevent="deleteRow(scope.$index, list)">删除</el-button>
-            <el-button
-              size="mini"
-              type="success"
-              @click="examine">查看</el-button>
+              @click="deleteRow(scope.$index,  scope.row)">删除</el-button>
+<!--            <el-button-->
+<!--              size="mini"-->
+<!--              type="success"-->
+<!--              @click="examine">查看</el-button>-->
           </template>
         </el-table-column>
       </el-table>
@@ -86,6 +87,7 @@
 <script>
   import Header from "../Header/Header";
   import Axios from "axios";
+  import storage from "../../storage/storage";
   export default {
     name: "Postage",
     components: {Header},
@@ -106,8 +108,10 @@
         this.$router.push({path:'/Address'});
       },
       //编辑
-      compile (){
-        console.log("编辑")
+      compile(index, row) {
+        console.log(row);
+        storage.set("rowList",row);
+        this.$router.push({path:'/Address'});
       },
       //查看详情
       examine(){
@@ -130,8 +134,18 @@
         console.log(val);
       },
       //删除当前一行
-      deleteRow(index, rows) {
-        rows.splice(index, 1);
+      deleteRow(index, row) {
+        console.log(row);
+        const api = window.g.delupdate;
+        const parnm = new URLSearchParams();
+              parnm.append("isdelete","1");
+              parnm.append("id",row.id);
+        Axios.post(api,parnm).then((res)=>{
+          this.distList();
+          console.log(res);
+        }).catch((err)=>{
+          console.log(err)
+        })
       },
       //删除选中数据
       qxDete(){
@@ -150,7 +164,12 @@
       distList(){
         const api = window.g.findCost;
         // const api = "https://api.9knx.com/api/member?current="+this.present+"&size="+this.number;
-        Axios.get(api).then((res)=>{
+        let param = {
+            params:{
+              isdelete:0
+            }
+        };
+        Axios.get(api,param).then((res)=>{
           this.list=res.data.records;
           this.total=res.data.total;
           this.size=res.data.size;
@@ -162,8 +181,11 @@
       }
     },
     mounted() {
+
+    },
+    activated(){
       this.distList();
-    }
+    },
   }
 </script>
 

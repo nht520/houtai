@@ -1,5 +1,5 @@
 // const besurl = "http://192.168.3.45:8899";
-const besurl = "http://wx.bomao.xyz:8080/distributor";
+const besurl = "http://wx.bomao.xyz:8181/distributor";
 window.g = {
   AXIOS_TIMEOUT: 10000,
   login:besurl+"/distributor/member/login",
@@ -29,6 +29,8 @@ window.g = {
   addressadd:besurl+"/distributor/address",
 //  查询地址邮费
   findCost:besurl+"/distributor/addressCost",
+//  修改地址邮费
+  delupdate:besurl+"/distributor/addressCost/update",
 
 //  修改地址
   adsupdate:besurl+"/distributor/address/update",

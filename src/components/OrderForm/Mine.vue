@@ -17,25 +17,23 @@
           width="55">
         </el-table-column>
         <el-table-column
-          label="订货人姓名">
+          label="订货人姓名" prop="">
           <template slot-scope="scope">
-            <span >{{ scope.row.memberEntity.memberName }}</span>
+            <span >{{scope.row.memberEntity.memberName}}</span>
           </template>
         </el-table-column>
         <el-table-column
-          prop="memberGender"
           label="订货人电话"
         >
-          <template slot-scope="scope">
-            <span >{{ scope.row.memberEntity.memberPhone }}</span>
-          </template>
+<!--          <template slot-scope="scope">-->
+<!--            <span >{{ scope.row.memberEntity.memberPhone }}</span>-->
+<!--          </template>-->
         </el-table-column>
         <el-table-column
           prop="buyTime"
           label="订货时间">
         </el-table-column>
         <el-table-column
-          prop="mealEntity"
           label="所订套餐">
           <template slot-scope="scope">
             <span >{{ scope.row.mealEntity.mealName }}</span>

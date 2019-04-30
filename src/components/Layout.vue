@@ -35,7 +35,7 @@
         <v-layout>
           <transition name="bounce"  mode="out-in">
             <keep-alive>
-              <router-view></router-view>
+              <router-view ></router-view>
             </keep-alive>
           </transition>
         </v-layout>
