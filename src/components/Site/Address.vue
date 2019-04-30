@@ -65,8 +65,11 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :span="8" :offset="8">
+      <el-col :span="8" :offset="8" v-show="save">
         <el-button type="primary" @click="saveChange">保存</el-button>
+      </el-col>
+      <el-col :span="8" :offset="8" v-show="show">
+        <el-button type="primary" @click="delupdate" >修改</el-button>
       </el-col>
     </el-row>
   </div>
@@ -90,7 +93,9 @@
         County:[],
         getCounty:"",
         price:"",
-        value: ''
+        value: '',
+        save:true,
+        show:true,
       }
     },
     mounted(){
@@ -152,32 +157,43 @@
           console.log(err)
         })
       },
-    //  修改
-      delupdate(){
+      //判断是否有值
+      desever(){
         this.adsList = storage.get("rowList");
         if (this.adsList === null || this.adsList === undefined){
-          console.log("999")
+          console.log("999");
+          this.save=true;
+          this.show=false;
         }else if(this.adsList !== null || this.adsList !==undefined){
           this.province=this.adsList.provine;
           this.city=this.adsList.city;
           this.getCounty=this.adsList.county;
           this.price=this.adsList.price;
+          this.id=this.adsList.id;
+          this.save=false;
+          this.show=true;
         };
+      },
+      //  修改
+      delupdate(){
         const api = window.g.delupdate;
         const param = new URLSearchParams();
               param.append("provine",this.province);
               param.append("city",this.city);
               param.append("county",this.getCounty);
               param.append("price",this.price);
+              param.append("id",this.id);
         Axios.post(api,param).then((res)=>{
-          console.log(res)
+          console.log(res);
+          this.$router.push({path:'/Postage'});
+          storage.remove("rowList");
         }).catch((err)=>{
           console.log(err);
         })
       },
     },
     activated(){
-      this.delupdate();
+      this.desever();
     },
   }
 </script>

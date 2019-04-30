@@ -25,9 +25,9 @@
         <el-table-column
           label="订货人电话"
         >
-<!--          <template slot-scope="scope">-->
-<!--            <span >{{ scope.row.memberEntity.memberPhone }}</span>-->
-<!--          </template>-->
+          <template slot-scope="scope">
+            <span >{{ scope.row.memberEntity.memberPhone }}</span>
+          </template>
         </el-table-column>
         <el-table-column
           prop="buyTime"

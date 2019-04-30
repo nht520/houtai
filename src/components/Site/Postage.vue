@@ -134,18 +134,33 @@
         console.log(val);
       },
       //删除当前一行
+
       deleteRow(index, row) {
-        console.log(row);
-        const api = window.g.delupdate;
-        const parnm = new URLSearchParams();
-              parnm.append("isdelete","1");
-              parnm.append("id",row.id);
-        Axios.post(api,parnm).then((res)=>{
-          this.distList();
-          console.log(res);
-        }).catch((err)=>{
-          console.log(err)
-        })
+        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          const api = window.g.delupdate;
+          const parnm = new URLSearchParams();
+                parnm.append("isdelete","1");
+                parnm.append("id",row.id);
+          Axios.post(api,parnm).then((res)=>{
+            this.distList();
+            console.log(res);
+          }).catch((err)=>{
+            console.log(err)
+          });
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
       },
       //删除选中数据
       qxDete(){
