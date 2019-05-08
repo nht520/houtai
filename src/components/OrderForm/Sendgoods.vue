@@ -1,5 +1,5 @@
 <template>
-  <div id="UserList">
+  <div id="Sendgoods">
     <Header :header="title"></Header>
     <!--  头部-->
     <div class="list">
@@ -11,53 +11,65 @@
         style="width: 100%"
         @selection-change="selectionRowsChange"
       >
+<!--        <el-table-column-->
+<!--          type="selection"-->
+<!--          width="55">-->
+<!--        </el-table-column>-->
         <el-table-column
-          type="selection"
-          width="55">
+          label="商品">
+          <template slot-scope="scope">
+            <h2 style="margin-left: 10px">{{ scope.row.realname }}</h2>
+            <span style="margin-left: 10px">订单编号：{{ scope.row.mobile }}</span>
+          </template>
         </el-table-column>
         <el-table-column
-          prop="id"
-          label="编号">
+          label="买家"
+          prop="realname"
+        >
         </el-table-column>
         <el-table-column
-          label="姓名"
+          label="电话"
           prop="realname"
         >
         </el-table-column>
         <el-table-column
           prop="mobile"
-          label="电话"
+          label="支付/配送"
         >
         </el-table-column>
         <el-table-column
           prop="province"
-          label="地址">
+          label="数量">
+        </el-table-column>
+        <el-table-column
+          prop="province"
+          label="价格">
+        </el-table-column>
+        <el-table-column
+          prop="province"
+          label="状态">
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-<!--            <el-button-->
-<!--              size="mini"-->
-<!--              @click="compile">编辑</el-button>-->
+            <!--            <el-button-->
+            <!--              size="mini"-->
+            <!--              @click="compile">编辑</el-button>-->
             <el-button
               size="mini"
-              type="danger"
-              @click.native.prevent="deleteRow(scope.$index, list)">删除</el-button>
+              type="primary"
+              @click="deleteRow">确认发货</el-button>
             <el-button
               size="mini"
               type="success"
-              @click="examine">查看订单</el-button>
+              @click="examine">查看</el-button>
           </template>
         </el-table-column>
       </el-table>
       <!-- 引用分业-->
       <div id="Navpages">
         <el-row>
-          <el-col :span="12" class="left">
-            <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
-            <el-button type="danger" size="mini" @click="qxDete" >删除</el-button>
-          </el-col>
           <!-- 分业-->
-          <el-col :span="12">
+          <el-col :span="12" :offset="12">
             <el-pagination
               @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
@@ -77,11 +89,11 @@
   import Header from "../Header/Header";
   import Axios from "axios";
   export default {
-    name: "UserList",
+    name: "Sendgoods",
     components: {Header},
     data(){
       return{
-        title:"用户管理",
+        title:"订单管理",
         current: 1,
         list: [],
         total:0,
@@ -157,7 +169,7 @@
   .left
     text-align left
     padding-left  1%
-  #UserList
+  #Sendgoods
     width 100%
   #Navpages
     text-align right

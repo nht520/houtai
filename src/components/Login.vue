@@ -75,8 +75,11 @@
             if (res.status === 200){
                 const code = res.data.code;
                 if ( code === "200"){
+                  //将数据存在store
                   _this.$store.commit('login',res.data.data);
-                  // this.$store.dispatch('toggleFollowPerson',{userId:this.user.userid})
+                  //获取store里面的数据
+                  // _this.list=this.$store.state.user;
+                  // _this.$store.dispatch('toggleFollowPerson',{userId:this.user.userid})
                   //将数据存在storage
                   storage.set("user",res.data.data);
                   _this.$router.push({path:'/Layout'});
@@ -88,7 +91,6 @@
                   this.$message(res.data.message);
                 }
             } else{
-              console.log(err);
               this.$message(res.data.message);
             }
           },(err)=>{

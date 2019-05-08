@@ -1,5 +1,5 @@
 <template>
-  <div id="Mine">
+  <div id="Allorder">
     <Header :header="title"></Header>
     <!--  头部-->
     <div class="list">
@@ -9,53 +9,51 @@
         ref="multipleTable"
         tooltip-effect="dark"
         style="width: 100%"
-        row-key="reserve-selection"
         @selection-change="selectionRowsChange"
       >
+        <!--        <el-table-column-->
+        <!--          type="selection"-->
+        <!--          width="55">-->
+        <!--        </el-table-column>-->
         <el-table-column
-          type="selection"
-          width="55">
-        </el-table-column>
-        <el-table-column
-          label="订货人姓名" prop="">
+          label="商品">
           <template slot-scope="scope">
-            <span >{{scope.row.memberEntity.memberName}}</span>
+            <h2 style="margin-left: 10px">{{ scope.row.realname }}</h2>
+            <span style="margin-left: 10px">订单编号：{{ scope.row.mobile }}</span>
           </template>
         </el-table-column>
         <el-table-column
-          label="订货人电话"
+          label="买家"
+          prop="realname"
         >
-          <template slot-scope="scope">
-            <span >{{ scope.row.memberEntity.memberPhone }}</span>
-          </template>
         </el-table-column>
         <el-table-column
-          prop="buyTime"
-          label="订货时间">
+          label="电话"
+          prop="realname"
+        >
         </el-table-column>
         <el-table-column
-          label="所订套餐">
-          <template slot-scope="scope">
-            <span >{{ scope.row.mealEntity.mealName }}</span>
-          </template>
+          prop="mobile"
+          label="支付/配送"
+        >
         </el-table-column>
         <el-table-column
-          label="套餐数量">
-          <template slot-scope="scope">
-            <span >{{ scope.row.mealEntity.mealNum }}</span>
-          </template>
+          prop="province"
+          label="数量">
         </el-table-column>
         <el-table-column
-          label="套餐价格">
-          <template slot-scope="scope">
-            <span >{{ scope.row.mealEntity.mealPrice }}</span>
-          </template>
+          prop="province"
+          label="价格">
+        </el-table-column>
+        <el-table-column
+          prop="province"
+          label="状态">
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-<!--            <el-button-->
-<!--              size="mini"-->
-<!--              @click="compile">编辑</el-button>-->
+            <!--            <el-button-->
+            <!--              size="mini"-->
+            <!--              @click="compile">编辑</el-button>-->
             <el-button
               size="mini"
               type="danger"
@@ -70,12 +68,8 @@
       <!-- 引用分业-->
       <div id="Navpages">
         <el-row>
-          <el-col :span="12" class="left">
-            <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
-            <el-button type="danger" size="mini" @click="qxDete" >删除</el-button>
-          </el-col>
           <!-- 分业-->
-          <el-col :span="12">
+          <el-col :span="12" :offset="12">
             <el-pagination
               @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
@@ -95,7 +89,7 @@
   import Header from "../Header/Header";
   import Axios from "axios";
   export default {
-    name: "Mine",
+    name: "Allorder",
     components: {Header},
     data(){
       return{
@@ -152,16 +146,9 @@
         this.distList();
       },
       distList(){
+        const api = window.g.hopMember;
         // const api = "https://api.9knx.com/api/member?current="+this.present+"&size="+this.number;
-        const api = window.g.stockLog;
-        const param ={
-              params:{
-                current:this.present,
-                size:this.number
-              }
-        };
-        Axios.get(api,param).then((res)=>{
-          console.log(res);
+        Axios.get(api).then((res)=>{
           this.list=res.data.records;
           this.total=res.data.total;
           this.size=res.data.size;
@@ -182,7 +169,7 @@
   .left
     text-align left
     padding-left  1%
-  #Mine
+  #Allorder
     width 100%
   #Navpages
     text-align right

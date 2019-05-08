@@ -20,22 +20,38 @@
           label="编号">
         </el-table-column>
         <el-table-column
-          label="省"
+          label="名称"
           prop="provine"
         >
         </el-table-column>
         <el-table-column
           prop="city"
-          label="市"
+          label="计费方式"
         >
         </el-table-column>
         <el-table-column
           prop="county"
-          label="区">
+          label="首重(首件)价格">
         </el-table-column>
         <el-table-column
           prop="price"
-          label="邮费">
+          label="续重(续件)价格">
+        </el-table-column>
+        <el-table-column label="启用">
+            <v-switch
+              v-model="start"
+              color="blue"
+              value="id"
+              hide-details
+            ></v-switch>
+        </el-table-column>
+        <el-table-column label="默认">
+            <v-switch
+              v-model="rdioewitch"
+              color="red"
+              value="id"
+              hide-details
+            ></v-switch>
         </el-table-column>
         <el-table-column label="操作">
           <template slot="header" slot-scope="scope">
@@ -93,13 +109,15 @@
     components: {Header},
     data(){
       return{
-        title:"订单管理",
+        title:"配送方式",
         current: 1,
         list: [],
         total:0,
         size:0,
         present:1,
         number:"10",
+        start:"",
+        rdioewitch:""
       }
     },
     methods:{
@@ -111,7 +129,7 @@
       compile(index, row) {
         console.log(row);
         storage.set("rowList",row);
-        this.$router.push({path:'/Address'});
+        // this.$router.push({path:'/Address'});
       },
       //查看详情
       examine(){
@@ -134,7 +152,6 @@
         console.log(val);
       },
       //删除当前一行
-
       deleteRow(index, row) {
         this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
           confirmButtonText: '确定',
@@ -176,6 +193,7 @@
         this.present=val;
         this.distList();
       },
+      //获取数据
       distList(){
         const api = window.g.findCost;
         // const api = "https://api.9knx.com/api/member?current="+this.present+"&size="+this.number;
@@ -185,6 +203,7 @@
             }
         };
         Axios.get(api,param).then((res)=>{
+          console.log(res);
           this.list=res.data.records;
           this.total=res.data.total;
           this.size=res.data.size;

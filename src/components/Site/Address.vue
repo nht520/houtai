@@ -3,12 +3,85 @@
     <HeaderOne :header="title"></HeaderOne>
     <!--  详情-->
     <el-row>
-      <el-col :span="8" :offset="8">
+      <el-col :span="5" :offset="1">
         <el-row>
-          <el-col :span="4">
-            <label>请选择省：</label>
+          <el-col :span="7">
+            <label>排序：</label>
           </el-col>
-          <el-col :span="8">
+          <el-col :span="14">
+            <el-input v-model="price" placeholder="请输入内容"></el-input>
+          </el-col>
+        </el-row>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="5" :offset="1">
+        <el-row>
+          <el-col :span="7">
+            <label>配送名称：</label>
+          </el-col>
+          <el-col :span="14">
+            <el-input v-model="price" placeholder="请输入内容"></el-input>
+          </el-col>
+        </el-row>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="5" :offset="1">
+        <el-row>
+          <el-col :span="7">
+            <label>是否默认：</label>
+          </el-col>
+          <el-col :span="14">
+            <v-switch
+              v-model="rdioewitch"
+              color="blue"
+              value="red"
+              hide-details
+            ></v-switch>
+          </el-col>
+        </el-row>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="5" :offset="1">
+        <el-row>
+          <el-col :span="7">
+            <label>计费方式：</label>
+          </el-col>
+          <el-col :span="17">
+            <el-radio v-model="radio" label="1">备选项</el-radio>
+            <el-radio v-model="radio" label="2">备选项</el-radio>
+          </el-col>
+        </el-row>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="5" :offset="1">
+        <el-row>
+          <el-col :span="7">
+            <label>物流公司：</label>
+          </el-col>
+          <el-col :span="14">
+            <el-select v-model="value" placeholder="请选择">
+              <el-option
+                v-for="item in logistics"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+          </el-col>
+        </el-row>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="5" :offset="1">
+        <el-row>
+          <el-col :span="7">
+            <label>配送区域：</label>
+          </el-col>
+          <el-col :span="14">
             <el-select v-model="province" placeholder="请选择">
               <el-option
                 v-for="item in ProvinceList"
@@ -20,12 +93,12 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :span="8" :offset="8">
+      <el-col :span="3">
         <el-row>
-          <el-col :span="4">
-            <label  >请选择市：</label>
+          <el-col :span="3">
+            <label  >市：</label>
           </el-col>
-          <el-col :span="8" >
+          <el-col :span="14" >
             <el-select v-model="city" placeholder="请选择" @visible-change="CityChange">
               <el-option
                 v-for="item in getCity"
@@ -38,12 +111,12 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :span="8" :offset="8">
+      <el-col :span="3" >
         <el-row>
-          <el-col :span="4">
-            <label>请选择区：</label>
+          <el-col :span="3">
+            <label>区：</label>
           </el-col>
-          <el-col :span="8">
+          <el-col :span="14">
             <el-select v-model="getCounty" placeholder="请选择" @visible-change="getCountyChange">
               <el-option
                 v-for="item in County"
@@ -55,9 +128,49 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :span="8" :offset="8">
+    </el-row>
+    <el-row>
+      <el-col :span="23" :offset="1">
         <el-row>
-          <el-col :span="4">
+          <el-col :span="7">
+            <label>配送区域：</label>
+          </el-col>
+          <el-col :span="16">
+            <el-row class="addInput">
+              <el-col :span="3">
+                <p>首重(克)</p>
+                <el-input v-model="price" placeholder="请输入内容"></el-input>
+              </el-col>
+              <el-col :span="3">
+                <p>首重(克)</p>
+                <el-input v-model="price" placeholder="请输入内容"></el-input>
+              </el-col>
+              <el-col :span="3">
+                <p>首重(克)</p>
+                <el-input v-model="price" placeholder="请输入内容"></el-input>
+              </el-col>
+              <el-col :span="3">
+                <p>首重(克)</p>
+                <el-input v-model="price" placeholder="请输入内容"></el-input>
+              </el-col>
+              <el-col :span="3">
+                <p>首重(克)</p>
+                <el-input v-model="price" placeholder="请输入内容"></el-input>
+              </el-col>
+            </el-row>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="24">
+            根据重量来计算运费，当物品不足《首重重量》时，按照《首重费用》计算，超过部分按照《续重重量》和《续重费用》乘积来计算
+          </el-col>
+        </el-row>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="5" :offset="1" >
+        <el-row>
+          <el-col :span="7">
             <label>请输入邮费：</label>
           </el-col>
           <el-col :span="8">
@@ -65,10 +178,12 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :span="8" :offset="8" v-show="save">
+    </el-row>
+    <el-row>
+      <el-col :span="8" :offset="1" v-show="save">
         <el-button type="primary" @click="saveChange">保存</el-button>
       </el-col>
-      <el-col :span="8" :offset="8" v-show="show">
+      <el-col :span="11" :offset="1" v-show="show">
         <el-button type="primary" @click="delupdate" >修改</el-button>
       </el-col>
     </el-row>
@@ -91,11 +206,14 @@
         getCity:[],
         city:"",
         County:[],
+        logistics:["顺风快递","百世快递","邮政快递","圆通快递","申通快递"],
         getCounty:"",
         price:"",
         value: '',
         save:true,
         show:true,
+        radio: '1',
+        rdioewitch:""
       }
     },
     mounted(){
@@ -203,10 +321,12 @@
     width 100%
     background #FFFFFF
   #Address .el-col-8
-    margin-top 2%
-  #Address .el-col-4
-    margin-top 3.5%
+  .addInput .el-col-3 input
+    width 80%
   #Address button
     width 50%
+  #Address .el-row
+    margin 1% 0%
+    line-height 45px
 
 </style>

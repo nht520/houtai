@@ -71,16 +71,23 @@
                 list:[
                   {
                     id:"1",
-                    title:"分销订单",
-                    path:"/Distribution",
-                    icon:"people",
-                    class:"loyalty",
+                    title:"待发货",
+                    path:"/Sendgoods",
+                    icon:"loyalty",
+                    class:"el-icon-tickets",
                   },
                   {
                     id:"2",
-                    title:"套餐订单",
-                    path:"/Mine",
-                    icon:"sd_card",
+                    title:"已完成",
+                    path:"/Completed",
+                    icon:"offline_pin",
+                    class:"el-icon-tickets",
+                  },
+                  {
+                    id:"3",
+                    title:"全部订单",
+                    path:"/Allorder",
+                    icon:"dashboard",
                     class:"el-icon-tickets",
                   }
                 ]
@@ -102,8 +109,8 @@
               },
               {
                 id:"2",
-                title:"地址管理",
-                icon:"person_pin",
+                title:"配送方式",
+                icon:"pets",
                 class:"fa-user-ninja",
                 list:[
                   // {

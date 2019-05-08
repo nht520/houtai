@@ -7,9 +7,11 @@ const Details = () => import( '@/components/Details/Details.vue');
 const For = () => import('@/components/NotFound/For.vue');
 
 //订单
-const Distribution = () => import("@/components/OrderForm/Distribution.vue");
-const Mine = () => import("@/components/OrderForm/Mine.vue");
 const Retail = () => import("@/components/OrderForm/Retail.vue");
+const Sendgoods = () => import("@/components/OrderForm/Sendgoods.vue");
+const Completed = () => import("@/components/OrderForm/Completed.vue");
+const Allorder = () => import("@/components/OrderForm/Allorder.vue");
+
 //用户
 const UserList = () => import("@/components/UserName/UserList.vue");
 //商城套餐
@@ -48,16 +50,6 @@ export default new Router({
           component:Setmeal
         },
         {
-          path:'/Distribution',
-          name:'Distribution',
-          component:Distribution
-        },
-        {
-          path:'/Mine',
-          name:'Mine',
-          component:Mine
-        },
-        {
           path:"/UserList",
           name:"UserList",
           component:UserList
@@ -66,6 +58,21 @@ export default new Router({
           path:'/Retail',
           name:'Retail',
           component:Retail
+        },
+        {
+          path:'/Sendgoods',
+          name:'Sendgoods',
+          component:Sendgoods
+        },
+        {
+          path:'/Completed',
+          name:'Completed',
+          component:Completed
+        },
+        {
+          path:'/Allorder',
+          name:'Allorder',
+          component:Allorder
         },
         {
           path:'/Details',
