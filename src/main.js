@@ -13,7 +13,11 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 //验证
 import VeeValidate from 'vee-validate';
-Vue.use(VeeValidate);
+const conflicts = {
+  errorBagName: 'errorBags', // change if property conflicts.
+  fieldsBagName: 'fieldBags',
+};
+Vue.use(VeeValidate,conflicts);
 //引入状态管理
 import Vuex from 'vuex';
 import store from "./store/store";

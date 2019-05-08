@@ -15,49 +15,52 @@
         <!--          type="selection"-->
         <!--          width="55">-->
         <!--        </el-table-column>-->
-        <el-table-column
-          label="商品">
+        <el-table-column width="260px"
+                         label="商品">
           <template slot-scope="scope">
-            <h2 style="margin-left: 10px">{{ scope.row.realname }}</h2>
-            <span style="margin-left: 10px">订单编号：{{ scope.row.mobile }}</span>
+            <h2 style="margin-left: 10px">{{ scope.row.orderGoods.goodsEntity.goodsName }}</h2>
+            <h2 style="margin-left: 10px">下单时间: {{ scope.row.orderTime }}</h2>
+            <span style="margin-left: 10px; color:#F00;">订单编号: {{ scope.row.orderNo }}</span>
           </template>
         </el-table-column>
         <el-table-column
           label="买家"
-          prop="realname"
         >
+          <template slot-scope="scope">
+            <span style="margin-left: 10px">{{ scope.row.memberEntity.memberName }}</span>
+          </template>
         </el-table-column>
         <el-table-column
           label="电话"
-          prop="realname"
         >
+          <template slot-scope="scope">
+            <span style="margin-left: 10px">{{ scope.row.memberEntity.memberPhone }}</span>
+          </template>
         </el-table-column>
         <el-table-column
-          prop="mobile"
-          label="支付/配送"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="province"
+          prop="orderGoods.addNumber"
           label="数量">
         </el-table-column>
         <el-table-column
-          prop="province"
+          prop="orderPrice"
           label="价格">
         </el-table-column>
         <el-table-column
-          prop="province"
-          label="状态">
+          label="状态"
+        >
+          <template slot-scope="scope">
+            <span style="margin-left: 10px">已完成</span>
+          </template>
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <!--            <el-button-->
             <!--              size="mini"-->
             <!--              @click="compile">编辑</el-button>-->
-                        <el-button
-                          size="mini"
-                          type="danger"
-                          @click.native.prevent="deleteRow(scope.$index, list)">删除</el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              @click="deleteRow">删除</el-button>
             <el-button
               size="mini"
               type="success"
@@ -89,7 +92,7 @@
   import Header from "../Header/Header";
   import Axios from "axios";
   export default {
-    name: "Completed",
+    name: "Sendgoods",
     components: {Header},
     data(){
       return{
@@ -129,7 +132,21 @@
       },
       //删除当前一行
       deleteRow(index, rows) {
-        rows.splice(index, 1);
+        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
       },
       //删除选中数据
       qxDete(){
@@ -146,10 +163,38 @@
         this.distList();
       },
       distList(){
-        const api = window.g.hopMember;
+        const api = window.g.indent;
         // const api = "https://api.9knx.com/api/member?current="+this.present+"&size="+this.number;
-        Axios.get(api).then((res)=>{
-          this.list=res.data.records;
+        const date={
+          params:{
+            current:this.present,
+            size:this.number,
+            orderStatus:1,
+          }
+        };
+        var _this = this;
+        Axios.get(api,date).then((res)=>{
+          console.log(res);
+          var data = res.data.records;
+          var sj = {};
+          for(let i =0;i<data.length;i++){
+            sj['id'] = data[i].id;
+            sj['goodsEntity'] = data[i].deliverAddress;
+            sj['deliverFreight'] = data[i].deliverFreight;
+            sj['deliverName'] = data[i].deliverName;
+            sj['deliverPhone'] = data[i].deliverPhone;
+            sj['distributorId'] = data[i].distributorId;
+            sj['memberEntity'] = data[i].memberEntity;
+            sj['orderNo'] = data[i].orderNo;
+            sj['orderPrice'] = data[i].orderPrice;
+            sj['orderStatus'] = data[i].orderStatus;
+            sj['orderTime'] = data[i].orderTime;
+            sj['orderGoods'] = JSON.parse(data[i].orderGoods)[0];
+            _this.list.push(sj);
+          }
+          console.log(_this.list);
+          // var obj=JSON.parse(res.data.records.orderGoods);
+          // console.log(obj);
           this.total=res.data.total;
           this.size=res.data.size;
           this.pages=res.data.pages;

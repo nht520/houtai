@@ -138,7 +138,6 @@
           init(v){
             // this.$store.commit('navlist',v);
             storage.set("navlist",v);
-            console.log(v);
           },
         },
         mounted(){

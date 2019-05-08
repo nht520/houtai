@@ -136,7 +136,13 @@
       distList(){
         const api = window.g.hopMember;
         // const api = "https://api.9knx.com/api/member?current="+this.present+"&size="+this.number;
-        Axios.get(api).then((res)=>{
+        const date={
+              params:{
+                current:this.present,
+                size:this.number,
+              }
+        };
+        Axios.get(api,date).then((res)=>{
           this.list=res.data.records;
           this.total=res.data.total;
           this.size=res.data.size;
