@@ -172,7 +172,6 @@
       },
       distList(){
         const api = window.g.indent;
-        // const api = "https://api.9knx.com/api/member?current="+this.present+"&size="+this.number;
         const date={
           params:{
             current:this.present,

@@ -41,11 +41,11 @@
             <el-button
               size="mini"
               type="danger"
-              @click.native.prevent="deleteRow(scope.$index, list)">删除</el-button>
+              @click="deleteRow(scope.$index, scope.row)">删除</el-button>
             <el-button
               size="mini"
               type="success"
-              @click="examine">查看订单</el-button>
+              @click="examine(scope.row)">查看订单</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -96,9 +96,15 @@
         console.log("编辑")
       },
       //查看详情
-      examine(){
-        this.$router.push({path:'/Details'});
-        console.log(this.title)
+      examine(row){
+        // console.log(row);
+        // this.$router.push({path:'/Sendgoods'});
+        this.$router.push({
+          path:"/UserOrder",//跳转路由
+          query:{//参数对象
+            id:row.id
+          }
+        });
       },
       //全选
       toggleSelect(rows) {
@@ -116,8 +122,8 @@
         console.log(val);
       },
       //删除当前一行
-      deleteRow(index, rows) {
-        rows.splice(index, 1);
+      deleteRow(index, row) {
+        console.log(row);
       },
       //删除选中数据
       qxDete(){
@@ -143,6 +149,7 @@
               }
         };
         Axios.get(api,date).then((res)=>{
+          console.log(res);
           this.list=res.data.records;
           this.total=res.data.total;
           this.size=res.data.size;

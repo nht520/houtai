@@ -14,6 +14,7 @@ const Allorder = () => import("@/components/OrderForm/Allorder.vue");
 
 //用户
 const UserList = () => import("@/components/UserName/UserList.vue");
+const UserOrder = () => import("@/components/UserName/UserOrder.vue");
 //商城套餐
 const Setmeal = () => import("@/components/Setmeal/Setmeal.vue");
 //地址邮费
@@ -53,6 +54,11 @@ export default new Router({
           path:"/UserList",
           name:"UserList",
           component:UserList
+        },
+        {
+          path:"/UserOrder",
+          name:"UserOrder",
+          component:UserOrder
         },
         {
           path:'/Retail',

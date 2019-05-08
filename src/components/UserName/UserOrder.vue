@@ -1,5 +1,5 @@
 <template>
-  <div id="Sendgoods">
+  <div id="UserOrder">
     <Header :header="title"></Header>
     <!--  头部-->
     <div class="list">
@@ -9,14 +9,13 @@
         ref="multipleTable"
         tooltip-effect="dark"
         style="width: 100%"
-        @selection-change="selectionRowsChange"
       >
-<!--        <el-table-column-->
-<!--          type="selection"-->
-<!--          width="55">-->
-<!--        </el-table-column>-->
+        <!--        <el-table-column-->
+        <!--          type="selection"-->
+        <!--          width="55">-->
+        <!--        </el-table-column>-->
         <el-table-column width="260px"
-          label="商品">
+                         label="商品">
           <template slot-scope="scope">
             <h2 style="margin-left: 10px">{{ scope.row.orderGoods.goodsEntity.goodsName }}</h2>
             <h2 style="margin-left: 10px">下单时间: {{ scope.row.orderTime }}</h2>
@@ -51,21 +50,6 @@
             <span style="margin-left: 10px">待发货</span>
           </template>
         </el-table-column>
-        <el-table-column label="操作">
-          <template slot-scope="scope">
-<!--            <el-button-->
-<!--              size="mini"-->
-<!--              @click="compile">编辑</el-button>-->
-            <el-button
-              size="mini"
-              type="primary"
-              @click="saveOrder(scope.$index,  scope.row)">确认发货</el-button>
-            <el-button
-              size="mini"
-              type="success"
-              @click="examine">查看</el-button>
-          </template>
-        </el-table-column>
       </el-table>
       <!-- 引用分业-->
       <div id="Navpages">
@@ -85,42 +69,13 @@
         </el-row>
       </div>
     </div>
-<!--    发货-->
-    <el-dialog
-      title="请输入物流单号！"
-      :visible.sync="dialogVisible"
-      width="30%"
-    >
-      <div class="dialogOrder">
-        <el-form ref="form" :model="form" label-width="80px">
-          <el-form-item label="物流编号:">
-            <el-input v-model="form.orderName"></el-input>
-          </el-form-item>
-          <el-form-item label="物流公司:">
-            <el-select v-model="form.orderRegion" placeholder="请选择物流公司">
-              <el-option label="顺风快递" value="顺风快递"></el-option>
-              <el-option label="申通快递" value="顺风快递"></el-option>
-              <el-option label="圆通快递" value="圆通快递"></el-option>
-              <el-option label="中通快递" value="中通快递"></el-option>
-              <el-option label="韵达快递" value="韵达快递"></el-option>
-              <el-option label="EMS快递" value="EMS快递"></el-option>
-              <el-option label="百世快递" value="百世快递"></el-option>
-            </el-select>
-          </el-form-item>
-        </el-form>
-      </div>
-      <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="ordeSubmit">确 定</el-button>
-  </span>
-    </el-dialog>
   </div>
 </template>
 <script>
   import Header from "../Header/Header";
   import Axios from "axios";
   export default {
-    name: "Sendgoods",
+    name: "UserOrder",
     components: {Header},
     data(){
       return{
@@ -140,58 +95,6 @@
     },
     methods:{
       // 发货
-      saveOrder(index,row) {
-        this.dialogVisible=true;
-        this.orderId=row.id;
-      },
-      ordeSubmit(){
-        this.ordername = this.form.orderName;
-        this.orderregs = this.form.orderRegion;
-        const Api = window.g.deliver;
-        const param = new URLSearchParams();
-              param.append("id",this.orderId);
-              param.append("orderStatus","1");
-              param.append("orderLogistics",this.ordername);
-              param.append("logisticsNo",this.orderregs);
-        Axios.post(Api,param).then((res)=>{
-          console.log(res);
-          this.dialogVisible=false;
-        }).catch((err)=>{
-          console.log(err)
-        })
-      },
-      //编辑
-      compile (){
-        console.log("编辑")
-      },
-      //查看详情
-      examine(){
-        this.$router.push({path:'/Details'});
-        console.log(this.title)
-      },
-      //全选
-      toggleSelect(rows) {
-        console.log(rows);
-        if (rows) {
-          rows.forEach(row => {
-            this.$refs.multipleTable.toggleRowSelection(row);
-          });
-        } else {
-          this.$refs.multipleTable.clearSelection();
-        }
-      },
-      //获取全选的key
-      selectionRowsChange(val){
-        console.log(val);
-      },
-      //删除当前一行
-      deleteRow(index, rows) {
-        rows.splice(index, 1);
-      },
-      //删除选中数据
-      qxDete(){
-        console.log("删除选中数据");
-      },
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
         this.number=val;
@@ -204,12 +107,10 @@
       },
       distList(){
         const api = window.g.indent;
-        // const api = "https://api.9knx.com/api/member?current="+this.present+"&size="+this.number;
         const date={
-              params:{
-                current:this.present,
-                size:this.number,
-              }
+          params:{
+            id:this.orderID,
+          }
         };
         var _this = this;
         Axios.get(api,date).then((res)=>{
@@ -244,8 +145,9 @@
       }
     },
     mounted() {
-      this.distList();
-    }
+      this.orderID=this.$route.query.id;
+    },
+
   }
 </script>
 
@@ -253,7 +155,7 @@
   .left
     text-align left
     padding-left  1%
-  #Sendgoods
+  #UserOrder
     width 100%
   #Navpages
     text-align right

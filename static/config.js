@@ -1,5 +1,6 @@
 // const besurl = "http://192.168.3.45:8899";
 const besurl = "http://wx.bomao.xyz:8181/distributor";
+// const besurl = "http://wx.bomao.xyz:8080/distributor";
 window.g = {
   AXIOS_TIMEOUT: 10000,
   login:besurl+"/distributor/member/login",
@@ -18,6 +19,8 @@ window.g = {
   //自己发货订单
   indent:besurl+"/distributor/order",
   update:besurl+"/distributor/order/update",
+  //后台发货订单
+  deliver:besurl+"/distributor/order/deliver",
   //分销订单
   subordinate:besurl+"/distributor/subordinate",
   //地址
