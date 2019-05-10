@@ -19,8 +19,15 @@
                          label="商品">
           <template slot-scope="scope">
             <h2 style="margin-left: 10px">{{ scope.row.orderGoods.goodsEntity.goodsName }}</h2>
-            <h2 style="margin-left: 10px">下单时间: {{ scope.row.orderTime }}</h2>
-            <span style="margin-left: 10px; color:#F00;">订单编号: {{ scope.row.orderNo }}</span>
+            <h2 style="margin-left: 10px">订单编号: {{ scope.row.orderNo }}</h2>
+            <span style="margin-left: 10px; color:#F00;">物流编号: {{ scope.row.orderNo }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="时间"
+        >
+          <template slot-scope="scope">
+            <span style="margin-left: 10px">{{ scope.row.orderTime}}</span>
           </template>
         </el-table-column>
         <el-table-column
@@ -174,7 +181,6 @@
         };
         var _this = this;
         Axios.get(api,date).then((res)=>{
-          console.log(res);
           var data = res.data.records;
           var sj = {};
           for(let i =0;i<data.length;i++){
@@ -206,6 +212,8 @@
     },
     mounted() {
       this.distList();
+    },
+    activated() {
     }
   }
 </script>

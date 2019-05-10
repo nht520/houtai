@@ -1,4 +1,3 @@
-// const besurl = "http://192.168.3.45:8899";
 const besurl = "http://wx.bomao.xyz:8181/distributor";
 // const besurl = "http://wx.bomao.xyz:8080/distributor";
 window.g = {

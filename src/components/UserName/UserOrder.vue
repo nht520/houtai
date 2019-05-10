@@ -147,7 +147,9 @@
     mounted() {
       this.orderID=this.$route.query.id;
     },
-
+    activated() {
+      this.distList();
+    }
   }
 </script>
 

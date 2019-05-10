@@ -9,7 +9,7 @@
              type="username"
              v-model="username"
              :rules="nameRules"
-             :counter="10"
+             :counter="12"
              label="请输入账号"
              required
            ></v-text-field>
