@@ -1,5 +1,5 @@
-const besurl = "http://wx.bomao.xyz:8181/distributor";
-// const besurl = "http://wx.bomao.xyz:8080/distributor";
+// const besurl = "http://wx.bomao.xyz:8181/distributor";
+const besurl = "http://wx.bomao.xyz:8080/distributor";
 window.g = {
   AXIOS_TIMEOUT: 10000,
   login:besurl+"/distributor/member/login",

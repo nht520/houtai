@@ -90,6 +90,7 @@
         size:0,
         present:1,
         number:"10",
+        // timer: null,
         form: {
           orderName: '',
           orderRegion: '',
@@ -98,6 +99,12 @@
       }
     },
     methods:{
+      // setTimer() {
+      //   if(this.timer == null) {
+      //     this.timer = setInterval( () => {
+      //     }, 1000)
+      //   }
+      // },
       // 发货
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
@@ -118,6 +125,7 @@
         };
         var _this = this;
         Axios.get(api,date).then((res)=>{
+          console.log(res);
           _this.list = [];
           var data = res.data.records;
           for(let i =0;i<data.length;i++){
@@ -138,7 +146,6 @@
             _this.list.push(sj);
           }
           // var obj=JSON.parse(res.data.records.orderGoods);
-          // console.log(obj);
           this.total=res.data.total;
           this.size=res.data.size;
           this.pages=res.data.pages;
@@ -149,6 +156,7 @@
       }
     },
     mounted() {
+      // this.setTimer();
     },
     activated() {
       this.orderID=this.$route.query.id;
