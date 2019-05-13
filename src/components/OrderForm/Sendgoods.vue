@@ -213,7 +213,6 @@
       },
       distList(){
         const api = window.g.indent;
-        // const api = "https://api.9knx.com/api/member?current="+this.present+"&size="+this.number;
         const date={
               params:{
                 current:this.present,
@@ -240,7 +239,6 @@
             sj['orderGoods'] = JSON.parse(data[i].orderGoods)[0];
             _this.list.push(sj);
           }
-          console.log(_this.list);
           // var obj=JSON.parse(res.data.records.orderGoods);
           // console.log(obj);
           this.total=res.data.total;
