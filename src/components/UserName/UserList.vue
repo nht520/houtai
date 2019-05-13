@@ -21,11 +21,11 @@
         </el-table-column>
         <el-table-column
           label="姓名"
-          prop="realname"
+          prop="memberName"
         >
         </el-table-column>
         <el-table-column
-          prop="mobile"
+          prop="memberPhone"
           label="电话"
         >
         </el-table-column>
@@ -97,7 +97,6 @@
       },
       //查看详情
       examine(row){
-        // console.log(row);
         // this.$router.push({path:'/Sendgoods'});
         this.$router.push({
           path:"/UserOrder",//跳转路由
@@ -154,7 +153,7 @@
         this.distList();
       },
       distList(){
-        const api = window.g.hopMember;
+        const api = window.g.distname;
         // const api = "https://api.9knx.com/api/member?current="+this.present+"&size="+this.number;
         const date={
               params:{

@@ -45,6 +45,10 @@
           label="价格">
         </el-table-column>
         <el-table-column
+          prop="logisticsNo"
+          label="快递">
+        </el-table-column>
+        <el-table-column
           label="状态">
           <template slot-scope="scope">
             <span style="margin-left: 10px">待发货</span>
@@ -79,7 +83,7 @@
     components: {Header},
     data(){
       return{
-        title:"订单管理",
+        title:"订单列表",
         current: 1,
         list: [],
         total:0,
@@ -109,15 +113,15 @@
         const api = window.g.indent;
         const date={
           params:{
-            id:this.orderID,
+            distributorId:this.orderID,
           }
         };
         var _this = this;
         Axios.get(api,date).then((res)=>{
-          console.log(res);
+          _this.list = [];
           var data = res.data.records;
-          var sj = {};
           for(let i =0;i<data.length;i++){
+            var sj = {};
             sj['id'] = data[i].id;
             sj['goodsEntity'] = data[i].deliverAddress;
             sj['deliverFreight'] = data[i].deliverFreight;
@@ -130,9 +134,9 @@
             sj['orderStatus'] = data[i].orderStatus;
             sj['orderTime'] = data[i].orderTime;
             sj['orderGoods'] = JSON.parse(data[i].orderGoods)[0];
+            sj['logisticsNo'] =data[i].logisticsNo;
             _this.list.push(sj);
           }
-          console.log(_this.list);
           // var obj=JSON.parse(res.data.records.orderGoods);
           // console.log(obj);
           this.total=res.data.total;
@@ -145,9 +149,9 @@
       }
     },
     mounted() {
-      this.orderID=this.$route.query.id;
     },
     activated() {
+      this.orderID=this.$route.query.id;
       this.distList();
     }
   }

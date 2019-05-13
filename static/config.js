@@ -22,6 +22,8 @@ window.g = {
   deliver:besurl+"/distributor/order/deliver",
   //分销订单
   subordinate:besurl+"/distributor/subordinate",
+//  经销商用户
+  distname:besurl+"/distributor/member",
   //地址
   // 省
   getProvince:besurl+"/distributor/systemAddress/getProvince",
