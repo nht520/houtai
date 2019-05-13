@@ -164,7 +164,8 @@
               param.append("logisticsNo",this.orderregs);
         Axios.post(Api,param).then((res)=>{
           this.dialogVisible=false;
-          console.log(res)
+          console.log(res);
+          this.distList();
         }).catch((err)=>{
           console.log(err)
         })
@@ -222,7 +223,6 @@
         };
         var _this = this;
         Axios.get(api,date).then((res)=>{
-          console.log(res);
           var data = res.data.records;
           var sj = {};
           for(let i =0;i<data.length;i++){

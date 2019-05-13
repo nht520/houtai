@@ -176,7 +176,7 @@
           params:{
             current:this.present,
             size:this.number,
-            orderStatus:1,
+            orderStatus:2,
           }
         };
         var _this = this;

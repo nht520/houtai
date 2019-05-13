@@ -189,8 +189,9 @@
         Axios.get(api,date).then((res)=>{
           console.log(res);
           var data = res.data.records;
-          var sj = {};
+
           for(let i =0;i<data.length;i++){
+            var sj = {};
             sj['id'] = data[i].id;
             sj['goodsEntity'] = data[i].deliverAddress;
             sj['deliverFreight'] = data[i].deliverFreight;
