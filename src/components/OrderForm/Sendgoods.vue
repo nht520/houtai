@@ -159,12 +159,12 @@
         const Api = window.g.deliver;
         const param = new URLSearchParams();
               param.append("id",this.orderId);
-              param.append("orderStatus","1");
+              param.append("orderStatus","2");
               param.append("orderLogistics",this.ordername);
               param.append("logisticsNo",this.orderregs);
         Axios.post(Api,param).then((res)=>{
-          console.log(res);
           this.dialogVisible=false;
+          console.log(res)
         }).catch((err)=>{
           console.log(err)
         })
@@ -217,6 +217,7 @@
               params:{
                 current:this.present,
                 size:this.number,
+                orderStatus:1,
               }
         };
         var _this = this;

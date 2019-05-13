@@ -57,7 +57,7 @@
         >
           <template slot-scope="scope">
             <span style="margin-left: 10px">
-              {{scope.row.orderStatus === 0?"代发货":"已完成"}}
+              {{scope.row.orderStatus === 1?"代发货":"已完成"}}
             </span>
           </template>
         </el-table-column>
