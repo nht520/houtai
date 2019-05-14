@@ -11,7 +11,7 @@
     </v-navigation-drawer>
     <v-toolbar
       :clipped-left="$vuetify.breakpoint.lgAndUp"
-      color="blue darken-3"
+      color="white darken-3"
       dark
       app
       fixed
@@ -78,11 +78,8 @@
     opacity 0
   .v-toolbar
     box-shadow 0 2px 4px -1px rgba(199, 203, 255, 0.2), 0 4px 5px 0 rgba(221, 228, 255, 0.14), 0 1px 10px 0 rgba(206, 207, 255, 0.12)
-  .blue.darken-3
-    background-color #ffffff!important
-    border-color #ffffff!important
   .v-btn .v-btn__content .v-icon
-   color  #409EFF
+   color  #409EFF !important
   .hidden-sm-and-down
    color #303133
   .hidden-sm

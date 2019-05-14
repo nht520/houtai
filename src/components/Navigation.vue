@@ -152,9 +152,8 @@
    color #303133
   .router-link-active
    background #ecf5ff
-  .router-link-exact-active
-     & .el-menu-item
+  .router-link-exact-active .el-menu-item
         color #409eff
-       & i
+  .router-link-exact-active .el-menu-item i
           color #409eff !important
 </style>
